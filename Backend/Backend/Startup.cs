@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Backend.Db.Data;
 using Backend.Db.Repositories;
+using Backend.Authentication;
 
 
 namespace Backend
@@ -37,12 +38,15 @@ namespace Backend
                 app.UseDeveloperExceptionPage();
             }
 
-            // app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
+
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
-            // app.UseAuthorization();
+            app.UseMiddleware<ApiKeyAuthMiddleware>();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

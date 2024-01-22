@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Core
-build_property.ProjectDir = C:\Users\lmatos\Desktop\Projetos\Estudos\WebAppFull\SistemaWeb-Angular-CS\Backend\Core\
+build_property.ProjectDir = C:\Users\lmatos\Desktop\Projetos\Estudos\GIT WebAppFull\WebSystem-Backend-Frontend\Backend\Core\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CVeqSBjBnrR0lif38WHx7gzEvajWKBZ87YmKmbHJW9ozX2Q1myx/tTIcJt4Wbt6EMEaXRn00uBDyaHr3IUcobg==",
+  "dgSpecHash": "GRaKjfPNBlDOUiQ2BxFSYf+S2Dg6jj0laU9DwpIXEcqjEU6Vij8q2cTXzZqttKSTb0VfFpHFrO3Ov+1k6FHHzQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebAppFull\\SistemaWeb-Angular-CS\\Backend\\Backend\\Backend.csproj",
+  "projectFilePath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\GIT WebAppFull\\WebSystem-Backend-Frontend\\Backend\\Backend\\Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lmatos\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\lmatos\\.nuget\\packages\\microsoft.aspnetcore\\2.2.0\\microsoft.aspnetcore.2.2.0.nupkg.sha512",

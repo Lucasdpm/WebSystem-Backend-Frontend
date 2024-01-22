@@ -5,7 +5,7 @@
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/Humanizer.dll": {
             "related": ".xml"
           }
         },
@@ -566,7 +566,7 @@
       "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.1/_._": {
+          "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {
             "related": ".xml"
           }
         },
@@ -592,7 +592,7 @@
           "System.Text.Encoding.CodePages": "6.0.0"
         },
         "compile": {
-          "lib/netcoreapp3.1/_._": {
+          "lib/netcoreapp3.1/Microsoft.CodeAnalysis.dll": {
             "related": ".pdb;.xml"
           }
         },
@@ -649,7 +649,7 @@
           "Microsoft.CodeAnalysis.Common": "[4.5.0]"
         },
         "compile": {
-          "lib/netcoreapp3.1/_._": {
+          "lib/netcoreapp3.1/Microsoft.CodeAnalysis.CSharp.dll": {
             "related": ".pdb;.xml"
           }
         },
@@ -709,7 +709,7 @@
           "Microsoft.CodeAnalysis.Workspaces.Common": "[4.5.0]"
         },
         "compile": {
-          "lib/netcoreapp3.1/_._": {
+          "lib/netcoreapp3.1/Microsoft.CodeAnalysis.CSharp.Workspaces.dll": {
             "related": ".pdb;.xml"
           }
         },
@@ -771,7 +771,7 @@
           "System.Threading.Channels": "6.0.0"
         },
         "compile": {
-          "lib/netcoreapp3.1/_._": {
+          "lib/netcoreapp3.1/Microsoft.CodeAnalysis.Workspaces.dll": {
             "related": ".pdb;.xml"
           }
         },
@@ -1506,7 +1506,7 @@
           "System.CodeDom": "4.4.0"
         },
         "compile": {
-          "lib/netstandard2.0/_._": {}
+          "lib/netstandard2.0/Mono.TextTemplating.dll": {}
         },
         "runtime": {
           "lib/netstandard2.0/Mono.TextTemplating.dll": {}
@@ -1747,7 +1747,7 @@
       "System.CodeDom/4.4.0": {
         "type": "package",
         "compile": {
-          "ref/netstandard2.0/_._": {
+          "ref/netstandard2.0/System.CodeDom.dll": {
             "related": ".xml"
           }
         },
@@ -1790,7 +1790,7 @@
       "System.Composition.AttributedModel/6.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/System.Composition.AttributedModel.dll": {
             "related": ".xml"
           }
         },
@@ -1809,7 +1809,7 @@
           "System.Composition.AttributedModel": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/System.Composition.Convention.dll": {
             "related": ".xml"
           }
         },
@@ -1828,7 +1828,7 @@
           "System.Composition.Runtime": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/System.Composition.Hosting.dll": {
             "related": ".xml"
           }
         },
@@ -1844,7 +1844,7 @@
       "System.Composition.Runtime/6.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/System.Composition.Runtime.dll": {
             "related": ".xml"
           }
         },
@@ -1865,7 +1865,7 @@
           "System.Composition.Runtime": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/System.Composition.TypedParts.dll": {
             "related": ".xml"
           }
         },
@@ -2007,7 +2007,7 @@
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/System.Text.Encoding.CodePages.dll": {
             "related": ".xml"
           }
         },
@@ -2070,7 +2070,7 @@
       "System.Threading.Channels/6.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/System.Threading.Channels.dll": {
             "related": ".xml"
           }
         },
@@ -2090,6 +2090,31 @@
         },
         "runtime": {
           "lib/netcoreapp2.1/_._": {}
+        }
+      },
+      "Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Core.dll": {}
+        }
+      },
+      "Db/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "8.0.1",
+          "Microsoft.EntityFrameworkCore.Design": "8.0.1",
+          "Microsoft.EntityFrameworkCore.Sqlite": "3.1.2"
+        },
+        "compile": {
+          "bin/placeholder/Db.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Db.dll": {}
         }
       }
     }
@@ -4937,10 +4962,22 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Core/1.0.0": {
+      "type": "project",
+      "path": "../Core/Core.csproj",
+      "msbuildProject": "../Core/Core.csproj"
+    },
+    "Db/1.0.0": {
+      "type": "project",
+      "path": "../Db/Db.csproj",
+      "msbuildProject": "../Db/Db.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "Core >= 1.0.0",
+      "Db >= 1.0.0",
       "Microsoft.AspNetCore >= 2.2.0",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 8.0.1",
       "Microsoft.EntityFrameworkCore >= 8.0.1",
@@ -4956,11 +4993,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebAppFull\\SistemaWeb-Angular-CS\\Backend\\Backend\\Backend.csproj",
+      "projectUniqueName": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\GIT WebAppFull\\WebSystem-Backend-Frontend\\Backend\\Backend\\Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebAppFull\\SistemaWeb-Angular-CS\\Backend\\Backend\\Backend.csproj",
+      "projectPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\GIT WebAppFull\\WebSystem-Backend-Frontend\\Backend\\Backend\\Backend.csproj",
       "packagesPath": "C:\\Users\\lmatos\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebAppFull\\SistemaWeb-Angular-CS\\Backend\\Backend\\obj\\",
+      "outputPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\GIT WebAppFull\\WebSystem-Backend-Frontend\\Backend\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lmatos\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4976,7 +5013,14 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\GIT WebAppFull\\WebSystem-Backend-Frontend\\Backend\\Core\\Core.csproj": {
+              "projectPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\GIT WebAppFull\\WebSystem-Backend-Frontend\\Backend\\Core\\Core.csproj"
+            },
+            "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\GIT WebAppFull\\WebSystem-Backend-Frontend\\Backend\\Db\\Db.csproj": {
+              "projectPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\GIT WebAppFull\\WebSystem-Backend-Frontend\\Backend\\Db\\Db.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

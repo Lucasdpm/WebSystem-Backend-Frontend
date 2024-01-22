@@ -1,0 +1,15 @@
+C:\Users\lmatos\Desktop\Projetos\Estudos\GIT WebAppFull\WebSystem-Backend-Frontend\Backend\Db\obj\Debug\net8.0\Db.csproj.AssemblyReference.cache
+C:\Users\lmatos\Desktop\Projetos\Estudos\GIT WebAppFull\WebSystem-Backend-Frontend\Backend\Db\obj\Debug\net8.0\Db.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lmatos\Desktop\Projetos\Estudos\GIT WebAppFull\WebSystem-Backend-Frontend\Backend\Db\obj\Debug\net8.0\Db.AssemblyInfoInputs.cache
+C:\Users\lmatos\Desktop\Projetos\Estudos\GIT WebAppFull\WebSystem-Backend-Frontend\Backend\Db\obj\Debug\net8.0\Db.AssemblyInfo.cs
+C:\Users\lmatos\Desktop\Projetos\Estudos\GIT WebAppFull\WebSystem-Backend-Frontend\Backend\Db\obj\Debug\net8.0\Db.csproj.CoreCompileInputs.cache
+C:\Users\lmatos\Desktop\Projetos\Estudos\GIT WebAppFull\WebSystem-Backend-Frontend\Backend\Db\obj\Debug\net8.0\Db.sourcelink.json
+C:\Users\lmatos\Desktop\Projetos\Estudos\GIT WebAppFull\WebSystem-Backend-Frontend\Backend\Db\bin\Debug\net8.0\Db.deps.json
+C:\Users\lmatos\Desktop\Projetos\Estudos\GIT WebAppFull\WebSystem-Backend-Frontend\Backend\Db\bin\Debug\net8.0\Db.dll
+C:\Users\lmatos\Desktop\Projetos\Estudos\GIT WebAppFull\WebSystem-Backend-Frontend\Backend\Db\bin\Debug\net8.0\Db.pdb
+C:\Users\lmatos\Desktop\Projetos\Estudos\GIT WebAppFull\WebSystem-Backend-Frontend\Backend\Db\obj\Debug\net8.0\Db.dll
+C:\Users\lmatos\Desktop\Projetos\Estudos\GIT WebAppFull\WebSystem-Backend-Frontend\Backend\Db\obj\Debug\net8.0\refint\Db.dll
+C:\Users\lmatos\Desktop\Projetos\Estudos\GIT WebAppFull\WebSystem-Backend-Frontend\Backend\Db\obj\Debug\net8.0\Db.pdb
+C:\Users\lmatos\Desktop\Projetos\Estudos\GIT WebAppFull\WebSystem-Backend-Frontend\Backend\Db\obj\Debug\net8.0\ref\Db.dll
+C:\Users\lmatos\Desktop\Projetos\Estudos\GIT WebAppFull\WebSystem-Backend-Frontend\Backend\Db\bin\Debug\net8.0\Db.runtimeconfig.json
+C:\Users\lmatos\Desktop\Projetos\Estudos\GIT WebAppFull\WebSystem-Backend-Frontend\Backend\Db\obj\Debug\net8.0\Db.genruntimeconfig.cache
