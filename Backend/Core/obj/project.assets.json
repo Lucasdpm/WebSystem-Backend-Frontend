@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\GIT WebAppFull\\WebSystem-Backend-Frontend\\Backend\\Core\\Core.csproj",
+      "projectUniqueName": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Core\\Core.csproj",
       "projectName": "Core",
-      "projectPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\GIT WebAppFull\\WebSystem-Backend-Frontend\\Backend\\Core\\Core.csproj",
+      "projectPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Core\\Core.csproj",
       "packagesPath": "C:\\Users\\lmatos\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\GIT WebAppFull\\WebSystem-Backend-Frontend\\Backend\\Core\\obj\\",
+      "outputPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lmatos\\AppData\\Roaming\\NuGet\\NuGet.Config",
