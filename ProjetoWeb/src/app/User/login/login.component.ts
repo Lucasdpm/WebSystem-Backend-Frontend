@@ -34,10 +34,14 @@ export class LoginComponent {
 	}
 
 	login() {
-		this.authService.login(this.formGroup.value).subscribe((jwt) => {
-			localStorage.setItem('jwtToken', jwt.token)
-			this.router.navigate(['/home'])
-		})
-	}
+
+        if (this.formGroup.invalid) {
+            return;
+        }
+
+        this.authService.postLogin(this.formGroup.value.username, this.formGroup.value.password).subscribe(() => {
+            this.router.navigate(['/']);
+        });
+    }
 }
 
