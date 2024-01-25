@@ -1,4 +1,4 @@
-namespace Backend
+namespace Api
 {
     public class Program
     {

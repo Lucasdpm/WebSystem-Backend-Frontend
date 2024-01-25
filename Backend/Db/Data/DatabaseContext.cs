@@ -1,10 +1,10 @@
-﻿using Backend.Db.Models;
+﻿using Db.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace Backend.Db.Data
+namespace Db.Data
 {
-    public class DatabaseContext : IdentityDbContext
+    public class DatabaseContext : DbContext
     {
         public DatabaseContext(DbContextOptions options) : base(options) { }
 
@@ -13,8 +13,6 @@ namespace Backend.Db.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
             modelBuilder.Entity<User>()
                 .HasData(new List<User>(){
                     new User(1, "User", "user@user.com.br","user", "10010010010", Access.USER),

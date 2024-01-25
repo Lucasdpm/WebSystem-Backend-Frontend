@@ -1,6 +1,6 @@
-﻿using Backend.Db.Models;
+﻿using Db.Models;
 
-namespace Backend.Db.Repositories
+namespace Db.Repositories
 {
     public interface IUserRepository
     {

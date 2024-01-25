@@ -1,8 +1,10 @@
-﻿using Backend.Db.Data;
-using Backend.Db.Models;
+﻿using Db.Data;
+using Db.Models;
+using Db.Utils;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
-namespace Backend.Db.Repositories
+namespace Db.Repositories
 {
     public class UserRepository : IUserRepository
     {
@@ -31,6 +33,31 @@ namespace Backend.Db.Repositories
             _context.Remove(entity);
             _context.SaveChangesAsync();
         }
+        
+        public async Task<User> CreateNovoUsuarioAsync(string name, string email, string password, string cpf)
+        {
+
+            var existing = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+
+            if (existing != null)
+            {
+                throw new DuplicateNameException("E-mail em uso.");
+            }
+
+            var user = new User
+            {
+                Name = name.Trim(),
+                Email = email.Trim().ToLower(),
+                Password = PasswordHasher.Hash(password),
+                Cpf = new string(cpf.Where(c => char.IsDigit(c)).ToArray()),
+                Access = Access.USER
+            };
+
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
+
+            return user;
+        }
 
         public async Task<User[]> GetAllUsersAsync()
         {
@@ -40,6 +67,11 @@ namespace Backend.Db.Repositories
         public async Task<User?> GetUserAsyncById(int id)
         {
             return await _context.Users.SingleOrDefaultAsync(user => user.Id == id);
+        }
+
+        public async Task<User?> GetUserAsyncByEmail(string email)
+        {
+            return await _context.Users.SingleOrDefaultAsync(user => user.Email == email);
         }
     }
 }

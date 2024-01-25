@@ -1,4 +1,4 @@
-﻿namespace Backend.ModelsDto
+﻿namespace Api.ModelsDto
 {
     public class AuthResult
     {

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QptksHQlTcDzje4HFXERzbuwDzCrpoNjajlNd2LfqveevzKjBhR5MqP0YBsK5RP+SEn2MgJTi/As6tquGeDnKw==",
+  "dgSpecHash": "LPki6wj3g4XZXdf40ISOMtFMio2eADkrqOAtDAmFJ2lhQxrV9oJka7SoxUK8cag+rwpu7rzclwa+ijHseXlARg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Core\\Core.csproj",
+  "projectFilePath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Core\\Core.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

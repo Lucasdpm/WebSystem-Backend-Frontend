@@ -1,8 +1,9 @@
-﻿using Backend.Db.Models;
-using Backend.Db.Repositories;
+﻿using Db.Models;
+using Db.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Backend.Api.Controllers
+namespace Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -45,6 +46,7 @@ namespace Backend.Api.Controllers
         }
 
         [HttpDelete("{productId}")]
+        [Authorize(Policy = "Mod")]
         public async Task<IActionResult> Delete(int productId)
         {
             var Product = await _productRepository.GetProductAsyncById(productId);

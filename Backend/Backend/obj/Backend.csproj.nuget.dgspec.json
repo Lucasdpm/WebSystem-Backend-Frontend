@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Backend\\Backend.csproj": {}
+    "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Backend\\Backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Backend\\Backend.csproj": {
+    "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Backend\\Backend.csproj",
+        "projectUniqueName": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Backend\\Backend.csproj",
+        "projectPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Backend\\Backend.csproj",
         "packagesPath": "C:\\Users\\lmatos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Backend\\obj\\",
+        "outputPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lmatos\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,11 +28,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Core\\Core.csproj"
+              "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Core\\Core.csproj"
               },
-              "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Db\\Db.csproj": {
-                "projectPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Db\\Db.csproj"
+              "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Db\\Db.csproj": {
+                "projectPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Db\\Db.csproj"
               }
             }
           }
@@ -51,22 +51,6 @@
               "target": "Package",
               "version": "[2.1.7, )"
             },
-            "Microsoft.AspNetCore.Authentication.JwtBearer": {
-              "target": "Package",
-              "version": "[8.0.1, )"
-            },
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[8.0.1, )"
-            },
-            "Microsoft.AspNetCore.Identity.UI": {
-              "target": "Package",
-              "version": "[8.0.1, )"
-            },
-            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
-              "target": "Package",
-              "version": "[8.0.1, )"
-            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.1, )"
@@ -84,6 +68,18 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.1, )"
+            },
+            "OpenIddict.Server.AspNetCore": {
+              "target": "Package",
+              "version": "[5.1.0, )"
+            },
+            "OpenIddict.Validation.AspNetCore": {
+              "target": "Package",
+              "version": "[5.1.0, )"
+            },
+            "OpenIddict.Validation.ServerIntegration": {
+              "target": "Package",
+              "version": "[5.1.0, )"
             }
           },
           "imports": [
@@ -109,14 +105,14 @@
         }
       }
     },
-    "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Core\\Core.csproj": {
+    "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Core\\Core.csproj",
+        "projectPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\lmatos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Core\\obj\\",
+        "outputPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lmatos\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -164,14 +160,14 @@
         }
       }
     },
-    "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Db\\Db.csproj": {
+    "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Db\\Db.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Db\\Db.csproj",
+        "projectUniqueName": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Db\\Db.csproj",
         "projectName": "Db",
-        "projectPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Db\\Db.csproj",
+        "projectPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Db\\Db.csproj",
         "packagesPath": "C:\\Users\\lmatos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Db\\obj\\",
+        "outputPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Db\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lmatos\\AppData\\Roaming\\NuGet\\NuGet.Config",

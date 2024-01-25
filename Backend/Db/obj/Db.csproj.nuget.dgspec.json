@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Db\\Db.csproj": {}
+    "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Db\\Db.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Db\\Db.csproj": {
+    "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Db\\Db.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Db\\Db.csproj",
+        "projectUniqueName": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Db\\Db.csproj",
         "projectName": "Db",
-        "projectPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Db\\Db.csproj",
+        "projectPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Db\\Db.csproj",
         "packagesPath": "C:\\Users\\lmatos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\teste\\WebSystem-Backend-Frontend\\Backend\\Db\\obj\\",
+        "outputPath": "C:\\Users\\lmatos\\Desktop\\Projetos\\Estudos\\WebApp\\WebApp OpenIddict auth\\WebSystem-Backend-Frontend\\Backend\\Db\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lmatos\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -62,7 +62,11 @@
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             }
           },
           "imports": [

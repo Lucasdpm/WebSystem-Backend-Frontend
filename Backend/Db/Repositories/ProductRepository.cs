@@ -1,8 +1,8 @@
-﻿using Backend.Db.Data;
-using Backend.Db.Models;
+﻿using Db.Data;
+using Db.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Backend.Db.Repositories
+namespace Db.Repositories
 {
     public class ProductRepository : IProductRepository
     {

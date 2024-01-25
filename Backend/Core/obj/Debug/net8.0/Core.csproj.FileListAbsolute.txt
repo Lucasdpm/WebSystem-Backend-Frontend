@@ -22,3 +22,15 @@ C:\Users\lmatos\Desktop\Projetos\Estudos\teste\WebSystem-Backend-Frontend\Backen
 C:\Users\lmatos\Desktop\Projetos\Estudos\teste\WebSystem-Backend-Frontend\Backend\Core\obj\Debug\net8.0\refint\Core.dll
 C:\Users\lmatos\Desktop\Projetos\Estudos\teste\WebSystem-Backend-Frontend\Backend\Core\obj\Debug\net8.0\Core.pdb
 C:\Users\lmatos\Desktop\Projetos\Estudos\teste\WebSystem-Backend-Frontend\Backend\Core\obj\Debug\net8.0\ref\Core.dll
+C:\Users\lmatos\Desktop\Projetos\Estudos\WebApp\WebApp OpenIddict auth\WebSystem-Backend-Frontend\Backend\Core\bin\Debug\net8.0\Core.deps.json
+C:\Users\lmatos\Desktop\Projetos\Estudos\WebApp\WebApp OpenIddict auth\WebSystem-Backend-Frontend\Backend\Core\bin\Debug\net8.0\Core.dll
+C:\Users\lmatos\Desktop\Projetos\Estudos\WebApp\WebApp OpenIddict auth\WebSystem-Backend-Frontend\Backend\Core\bin\Debug\net8.0\Core.pdb
+C:\Users\lmatos\Desktop\Projetos\Estudos\WebApp\WebApp OpenIddict auth\WebSystem-Backend-Frontend\Backend\Core\obj\Debug\net8.0\Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lmatos\Desktop\Projetos\Estudos\WebApp\WebApp OpenIddict auth\WebSystem-Backend-Frontend\Backend\Core\obj\Debug\net8.0\Core.AssemblyInfoInputs.cache
+C:\Users\lmatos\Desktop\Projetos\Estudos\WebApp\WebApp OpenIddict auth\WebSystem-Backend-Frontend\Backend\Core\obj\Debug\net8.0\Core.AssemblyInfo.cs
+C:\Users\lmatos\Desktop\Projetos\Estudos\WebApp\WebApp OpenIddict auth\WebSystem-Backend-Frontend\Backend\Core\obj\Debug\net8.0\Core.csproj.CoreCompileInputs.cache
+C:\Users\lmatos\Desktop\Projetos\Estudos\WebApp\WebApp OpenIddict auth\WebSystem-Backend-Frontend\Backend\Core\obj\Debug\net8.0\Core.sourcelink.json
+C:\Users\lmatos\Desktop\Projetos\Estudos\WebApp\WebApp OpenIddict auth\WebSystem-Backend-Frontend\Backend\Core\obj\Debug\net8.0\Core.dll
+C:\Users\lmatos\Desktop\Projetos\Estudos\WebApp\WebApp OpenIddict auth\WebSystem-Backend-Frontend\Backend\Core\obj\Debug\net8.0\refint\Core.dll
+C:\Users\lmatos\Desktop\Projetos\Estudos\WebApp\WebApp OpenIddict auth\WebSystem-Backend-Frontend\Backend\Core\obj\Debug\net8.0\Core.pdb
+C:\Users\lmatos\Desktop\Projetos\Estudos\WebApp\WebApp OpenIddict auth\WebSystem-Backend-Frontend\Backend\Core\obj\Debug\net8.0\ref\Core.dll

@@ -1,10 +1,12 @@
-﻿using Backend.Db.Models;
-using Backend.Db.Repositories;
+﻿using Db.Models;
+using Db.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Backend.Api.Controllers
+namespace  Api.Controllers
 {
     [ApiController]
+    [Authorize(Policy = "Mod")]
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
@@ -30,7 +32,15 @@ namespace Backend.Api.Controllers
             return Ok(result);
         }
 
+        [HttpPost("Register")]
+        public async Task<IActionResult> PostAccountAsync([FromBody] User data)
+        {
+            await _userRepository.CreateUserAsync(data.Name, data.Email, data.Password, data.Cpf);
+            return Ok();
+        }
+
         [HttpPost]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Post(User model)
         {
             _userRepository.Add(model);
@@ -38,6 +48,7 @@ namespace Backend.Api.Controllers
         }
 
         [HttpPut("{userId}")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Put(int userId, User model)
         {
             var User = await _userRepository.GetUserAsyncById(userId);
@@ -46,6 +57,7 @@ namespace Backend.Api.Controllers
         }
 
         [HttpDelete("{userId}")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Delete(int userId)
         {
             var User = await _userRepository.GetUserAsyncById(userId);

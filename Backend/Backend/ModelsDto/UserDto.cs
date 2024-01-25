@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Backend.Db.Models
+namespace Api.Models
 {
     public enum AccessDto
     {
@@ -27,6 +27,6 @@ namespace Backend.Db.Models
         public string Cpf { get; set; } = string.Empty;
 
         [Required]
-        public Access Access { get; set; }
+        public AccessDto Access { get; set; }
     }
 }

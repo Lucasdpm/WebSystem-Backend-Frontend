@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Backend.ModelsDto
+namespace Api.ModelsDto
 {
     public class UserLoginRequestDto
     {

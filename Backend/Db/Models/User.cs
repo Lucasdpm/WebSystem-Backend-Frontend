@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Backend.Db.Models
+namespace Db.Models
 {
     public enum Access
     {
@@ -21,8 +21,11 @@ namespace Backend.Db.Models
             Access = access;
         }
 
+        public User() { }
+
         [Key]
         public int Id { get; set; }
+
         [Required]
         public string Name { get; set; } = string.Empty;
 
