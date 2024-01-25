@@ -1,0 +1,59 @@
+<div class="registerBody vh-100">
+    <form [formGroup]="formGroup" (ngSubmit)="registerUser()">
+        <div class="container bg-body-tertiary align-midle rounded position-absolute top-50 start-50 translate-middle w-50">
+
+            <legend class="mt-3 mb-3">Registrar</legend>
+            
+            <div class="mb-3">
+                <label for="validationCustom01" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="validationCustom01" formControlName="name" placeholder="nome"
+                [ngClass]="{
+                'is-invalid': (submitted || formGroup.controls['name'].touched) && formGroup.controls['name'].invalid, 
+                'is-valid': formGroup.controls['name'].valid}">
+                <div class="invalid-feedback">
+                    Campo nome é obrigatório
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="validationCustom02" class="form-label">E-mail</label>
+                <input type="text" class="form-control" id="validationCustom01" formControlName="email" placeholder="exemplo@xmpl.com"
+                [ngClass]="{
+                    'is-invalid': (submitted || formGroup.controls['email'].touched) && (formGroup.controls['email'].invalid || emailCheck()),
+                    'is-valid': formGroup.controls['email'].valid && !emailCheck()}">
+                <div class="invalid-feedback">
+                    Email inválido ou já cadastrado
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="validationCustom03" class="form-label">Senha</label>
+                <input #x type="password" class="form-control" id="validationCustom01" required formControlName="password" placeholder="míninimo de 8 caracteres, é obrigatório usar letras, números e pelo menos um caractere especial"
+                [ngClass]="{
+                    'is-invalid': (submitted || formGroup.controls['password'].touched) && formGroup.controls['password'].invalid,
+                    'is-valid': formGroup.controls['password'].valid}">
+                <div class="invalid-feedback">
+                    Min. 8 caracteres (letras, números e caractere especial)
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="validationCustom04" class="form-label">CPF</label>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="000.000.000-00" required formControlName="cpf" [mask]="'000.000.000-00'"
+                [ngClass]="{
+                    'is-invalid': (submitted || formGroup.controls['cpf'].touched) && (formGroup.controls['cpf'].invalid || cpfCheck()),
+                    'is-valid': formGroup.controls['cpf'].valid && !cpfCheck()}">
+                <div class="invalid-feedback">
+                    Cpf inválido ou já cadastrado
+                </div>
+            </div>
+
+            <div class="container text-center mt-4">
+                <div class="row">
+                <button type="submit" class="btn btn-primary col mb-3">Registrar</button>
+                <p class="align-text-right">Já possui conta? <a href="/login" class="link-opacity-75-hover col">Logar</a></p>
+            </div>
+            </div>
+        </div>
+    </form>
+</div>

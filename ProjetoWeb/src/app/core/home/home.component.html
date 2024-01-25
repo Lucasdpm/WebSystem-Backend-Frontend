@@ -1,0 +1,21 @@
+<div class="vh-100">
+    <div class="homeBody position-absolute top-50 start-50 translate-middle w-25 text-white">
+        <h1 class="text text-bold fs-1 font-monospace text-uppercase text-center mb-4">Bem vindo, {{ loggedUserName }}</h1>
+        <div class="row">
+            <div class="card text-center col me-4">
+                <div class="card-body">
+                    <h6 class="card-title">Número de usuarios cadastrados</h6>
+                    <h1 class="card-text">{{ numUsers }}</h1>
+                    <button class="back btn btn-primary" routerLink="/userManagement" *ngIf="userPermition()">Ver usuários</button>
+                </div>
+            </div>
+                <div class="card text-center col ms-4">
+                    <div class="card-body">
+                    <h6 class="card-title">Número de produtos cadastrados</h6>
+                    <h1 class="card-text">{{ numProducts }}</h1>
+                    <button class="back btn btn-primary" routerLink="/productManagement">Ver Produtos</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="registerProductBody vh-100">
+    <button class="back btn btn-primary mt-4 ms-4" style="transform: translateY(79px);" routerLink="/productManagement">Voltar</button>
+    <form [formGroup]="formGroup" (ngSubmit)="submit()">
+        <div class="container bg-body-tertiary align-midle rounded position-absolute top-50 start-50 translate-middle w-50">
+            @if (productId) {
+                <legend class="mt-3 mb-3">Informações do produto</legend>
+            }
+            @else {
+                <legend class="mt-3 mb-3">Registrar produto</legend>
+            }
+
+            <div class="mb-3">
+                <label for="validationCustom01" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="validationCustom01" formControlName="name" placeholder="mínimo de 5 caracteres"
+                [ngClass]="{
+                'is-invalid': (submitted || formGroup.controls['name'].touched) && formGroup.controls['name'].invalid, 
+                'is-valid': formGroup.controls['name'].valid}">
+                <div class="invalid-feedback">
+                    Campo nome é obrigatório
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="validationCustom02" class="form-label">Preço (R$)</label>
+                <input type="text" class="form-control" id="validationCustom02" formControlName="price" placeholder="R$0,00" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: false, align: 'left'}"
+                [ngClass]="{
+                    'is-invalid': (submitted || formGroup.controls['price'].touched) && formGroup.controls['price'].invalid,
+                    'is-valid': (submitted || formGroup.controls['price'].touched) && formGroup.controls['price'].valid}">
+                <div class="invalid-feedback">
+                    Campo preço é obrigatório
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="validationCustom03" class="form-label">Peso (Kg)</label>
+                <input #x type="weight" class="form-control" id="validationCustom03"formControlName="weight" placeholder="1,225 Kg"
+                [ngClass]="{'is-valid': (submitted || formGroup.controls['weight'].touched) && formGroup.controls['weight'].valid}">
+            </div>
+
+            <div class="mb-3">
+                <label for="validationCustom04" class="form-label">Descrição</label>
+                <input type="text" class="form-control" id="validationCustom04" formControlName="description" placeholder="exemplo de descrição"
+                [ngClass]="{'is-valid': (submitted || formGroup.controls['description'].touched) && formGroup.controls['description'].valid}">
+            </div>
+            
+            <div class="mb-3">
+                <label for="validationCustom05" class="form-label">Estoque</label>
+                <input type="text" class="form-control" id="validationCustom05" formControlName="storage" placeholder="2"
+                [ngClass]="{'is-valid': (submitted || formGroup.controls['storage'].touched) && formGroup.controls['storage'].valid}">
+            </div>
+            
+            <div class="container text-center mt-4 mb-3">
+                @if (productId) {
+                    <div class="row gap-3">
+                        <button type="submit" class="btn btn-primary col">Salvar</button>
+                        <button type="button" class="delete" class="btn btn-primary col" [disabled]="userPermition()" (click)="delete()">Deletar</button>
+                    </div>
+                }
+                @else {
+                    <div class="row">
+                        <button type="submit" class="btn btn-primary col mb-3">Registrar</button>
+                    </div>
+                }
+                
+            </div>
+        </div>
+    </form>
+</div>

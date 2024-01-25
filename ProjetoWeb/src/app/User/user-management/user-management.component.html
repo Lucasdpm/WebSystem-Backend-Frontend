@@ -1,0 +1,31 @@
+<div class="tableContainer vh-100">
+  <button class="back btn btn-primary mt-4 ms-4" style="transform: translateY(79px);" routerLink="/home">Voltar</button>
+  <div class="tableContainer position-absolute top-50 start-50 translate-middle w-75">
+    <div class="scroll">
+      <table class="table" mat-table [dataSource]="userList" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef class="fw-bold text-center"> Nome </th>
+          <td mat-cell *matCellDef="let element"> <a routerLink="/user/{{element.id}}"> {{element.name}} </a></td>
+        </ng-container>
+      
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef class="fw-bold text-center"> Email </th>
+          <td mat-cell *matCellDef="let element" class="text-center"> {{element.email}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="cpf">
+          <th mat-header-cell *matHeaderCellDef class="fw-bold text-center"> CPF </th>
+          <td mat-cell *matCellDef="let element" class="text-center"> {{element.cpf | mask: '000.000.000-00'}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="access">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold text-center"> Acesso </th>
+            <td mat-cell *matCellDef="let element" class="text-center"> {{ element.access | userAccessName }} </td>
+          </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+</div>
