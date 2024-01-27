@@ -12,59 +12,35 @@ import { Access } from '../../access';
 })
 export class UserFormComponent {
 
-	userList: User[] = []
 	userId: number = Number.parseInt(this.router.url.slice(6))
 	formGroup: FormGroup = <FormGroup>{}
-	currentEmail: String = ''
-	currentCpf: String = ''
 	submitted = false
 	error: any;
 
 	constructor(private userService: UserService, private formBuilder: FormBuilder, private router: Router) {
-		this.userService.getUserById(this.userId).subscribe(user => {
-			this.formGroup = this.formBuilder.group({
-				id: [user.id],
-				name: [user.name],
-				email: [user.email, [this.emailValidator]],
-				password: [user.password],
-				cpf: [user.cpf],
-				access: [user.access]
-			})
-			this.formGroup.addValidators(Validators.required)
-		})
-
-		this.userService.getAllUsers().subscribe(data => { // matar
-			this.userList = data
-		})
-
-		this.initFormUserDetails()
+		this.initFormUser()
 	}
 
-	initFormUserDetails() {
-		this.userService.getUserById(this.userId).subscribe(user => {
+	initFormUser() {
+		if(this.userId) {
+			this.userService.getUserById(this.userId).subscribe(user => {
 
-			this.currentEmail = user.email // matar
-			this.currentCpf = user.cpf // matar
-
-			this.formGroup.patchValue(user); // testar
-
-			this.formGroup = this.formBuilder.group({
-				id: [user.id],
-				name: [user.name, [Validators.required]],
-				email: [user.email, [Validators.required, this.emailValidator]],
-				password: [user.password],
-				cpf: [user.cpf, [Validators.required]],
-				access: [user.access]
+				this.formGroup = this.formBuilder.group({
+					id: [user.id],
+					name: [user.name, [Validators.required]],
+					email: [user.email, [Validators.required, this.emailValidator]],
+					password: [user.password],
+					cpf: [user.cpf, [Validators.required]],
+					access: [user.access]
+				})
+			}, (err) => {
+				this.error = `Erro ao mostrar usuario. StackTrace: ${err}`
 			})
-		})
+		}
 	}
 
-	get userPermition2() {
+	get userPermition() {
 		return this.userService.checkAccess() === Access.mod
-	}
-
-	userPermition(): boolean { //mudar para o de cima
-		return false
 	}
 
 	emailValidator(control: AbstractControl) {
@@ -78,26 +54,14 @@ export class UserFormComponent {
 	emailCheck(): boolean { // matar
 		let alreadyRegistered: boolean = false
 
-		this.userList.forEach(user => { // tem que vim do backend 
-			if (user.email === this.formGroup.value.email) {
-				if (this.currentEmail !== this.formGroup.value.email) {
-					alreadyRegistered = true
-				}
-			}
-		})
+		
 
 		return alreadyRegistered
 	}
 
 	cpfCheck(): boolean { // matar
 		var alreadyRegistered: boolean = false
-		this.userList.forEach(user => {
-			if (user.cpf === this.formGroup.value.cpf) {
-				if (this.currentCpf !== this.formGroup.value.cpf) {
-					alreadyRegistered = true
-				}
-			}
-		})
+
 		return alreadyRegistered
 	}
 

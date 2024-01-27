@@ -15,31 +15,13 @@ namespace Api.Controllers
         {
             get
             {
-                const string headerName = "x-fornecedorid";
+                const string headerName = "x-userid";
 
-                if (Request.Headers.TryGetValue(headerName, out var xFornecedorId))
+                if (Request.Headers.TryGetValue(headerName, out var xUserId))
                 {
-                    if (int.TryParse(xFornecedorId.First(), out var fornecedorId))
+                    if (int.TryParse(xUserId.First(), out var userId))
                     {
-                        return fornecedorId;
-                    }
-                }
-
-                throw new Exception(headerName);
-            }
-        }
-
-        protected int CurrentLojaId
-        {
-            get
-            {
-                const string headerName = "x-lojaid";
-
-                if (Request.Headers.TryGetValue(headerName, out var xLojaId))
-                {
-                    if (int.TryParse(xLojaId.First(), out var lojaId))
-                    {
-                        return lojaId;
+                        return userId;
                     }
                 }
 

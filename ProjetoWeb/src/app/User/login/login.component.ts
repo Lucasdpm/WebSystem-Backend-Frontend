@@ -16,6 +16,7 @@ import { JwtAuth } from '../../models/jwtAuth';
 export class LoginComponent {
 
 	formGroup: FormGroup
+	submitted = false;
 
 	constructor(
 		private userService: UserService,
@@ -27,14 +28,10 @@ export class LoginComponent {
 			email: "",
 			password: ""
 		})
-
-		if (!this.userService.checkLogIn()) {
-			return
-		}
 	}
 
 	login() {
-
+		this.submitted = true
         if (this.formGroup.invalid) {
             return;
         }

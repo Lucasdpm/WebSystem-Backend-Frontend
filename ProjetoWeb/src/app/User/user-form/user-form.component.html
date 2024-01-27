@@ -7,11 +7,10 @@
 
             <div class="mb-3">
                 <label for="validationCustom01" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="validationCustom01" formControlName="name" placeholder="nome" ng-readonly="true" [readOnly]="userPermition()"
+                <input type="text" class="form-control" id="validationCustom01" formControlName="name" placeholder="nome" ng-readonly="true" [readOnly]="userPermition"
                 [ngClass]="{
                 'is-invalid': (submitted || formGroup.controls['name'].touched) && formGroup.controls['name'].invalid, 
-                'is-valid': formGroup.controls['name'].valid,
-                'readonly': true
+                'is-valid': formGroup.controls['name'].valid
                 }">
                 <div class="invalid-feedback">
                     Campo nome é obrigatório
@@ -20,7 +19,7 @@
 
             <div class="mb-3">
                 <label for="validationCustom02" class="form-label">E-mail</label>
-                <input type="text" class="form-control" id="validationCustom02" formControlName="email" placeholder="exemplo@xmpl.com" [readOnly]="userPermition()"
+                <input type="text" class="form-control" id="validationCustom02" formControlName="email" placeholder="exemplo@xmpl.com" [readOnly]="userPermition"
                 [ngClass]="{
                     'is-invalid': (submitted || formGroup.controls['email'].touched) && (formGroup.controls['email'].invalid || emailCheck()),
                     'is-valid': formGroup.controls['email'].valid && !emailCheck()}">
@@ -31,7 +30,7 @@
 
             <div class="mb-3">
                 <label for="validationCustom03" class="form-label">CPF</label>
-                <input type="text" class="form-control" id="validationCustom03" placeholder="000.000.000-00" required formControlName="cpf" [mask]="'000.000.000-00'" [readOnly]="userPermition()"
+                <input type="text" class="form-control" id="validationCustom03" placeholder="000.000.000-00" required formControlName="cpf" [mask]="'000.000.000-00'" [readOnly]="userPermition"
                 [ngClass]="{
                     'is-invalid': (submitted || formGroup.controls['cpf'].touched) && (formGroup.controls['cpf'].invalid || cpfCheck()),
                     'is-valid': formGroup.controls['cpf'].valid && !cpfCheck()}">
@@ -42,20 +41,20 @@
 
             <div class="mb-3">
                 <label for="validationCustom04" class="form-label">Acesso</label>
-                <select class="form-select" id="validationCustom04" required formControlName="access" [disabled]="userPermition()"
+                <select class="form-select" id="validationCustom04" required formControlName="access" [disabled]="userPermition"
                 [ngClass]="{
                     'is-invalid': (submitted || formGroup.controls['access'].touched) && (formGroup.controls['access'].invalid),
                     'is-valid': formGroup.controls['access'].valid }">
-                    <option value="0" [disabled]="userPermition()">Usuário</option>
-                    <option value="1" [disabled]="userPermition()">Moderador</option>
-                    <option value="2" [disabled]="userPermition()">Administrador</option>
+                    <option value="0" [disabled]="userPermition">Usuário</option>
+                    <option value="1" [disabled]="userPermition">Moderador</option>
+                    <option value="2" [disabled]="userPermition">Administrador</option>
                 </select>
             </div>
             
             <div class="container text-center mt-4 mb-3">
                 <div class="row gap-3">
-                <button type="submit" class="btn btn-primary col" [disabled]="userPermition()">Salvar</button>
-                <button type="button" class="delete" class="btn btn-primary col" [disabled]="userPermition()" (click)="delete()">Deletar</button>
+                <button type="submit" class="btn btn-primary col" [disabled]="userPermition">Salvar</button>
+                <button type="button" class="delete" class="btn btn-primary col" [disabled]="userPermition" (click)="delete()">Deletar</button>
             </div>
             </div>
         </div>

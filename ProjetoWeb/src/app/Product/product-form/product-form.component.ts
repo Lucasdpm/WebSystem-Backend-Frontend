@@ -17,9 +17,6 @@ export class ProductFormComponent {
   submitted = false
 
   constructor(private productService: ProductService, private formBuilder:FormBuilder, private router: Router, private userService: UserService) {
-    if (!this.userService.checkLogIn()) {
-      return
-    }
     this.initFormProduct()
   }
   

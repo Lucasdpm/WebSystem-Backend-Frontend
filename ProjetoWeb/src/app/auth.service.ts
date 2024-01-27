@@ -123,14 +123,4 @@ export class AuthService {
                 password
             });
     }
-    
-    // Esqueci a senha
-    postForgotPassword(email: string) {
-        return this.http.post('api/account/forgot-password', { email });
-    }
-
-    // Alterar a senha
-    postChangePassword(id: string, novaSenha: string) {
-        return this.http.post('api/account/change-password', { id, novaSenha });
-    }
 }

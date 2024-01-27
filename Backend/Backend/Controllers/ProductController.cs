@@ -7,7 +7,7 @@ namespace Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ProductController : ControllerBase
+    public class ProductController : UserBaseController
     {
         private readonly IProductRepository _productRepository;
 
@@ -58,5 +58,7 @@ namespace Api.Controllers
             _productRepository.Delete(Product);
             return Ok(Product);
         }
+
+
     }
 }

@@ -10,6 +10,7 @@ using Api.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using static System.Net.WebRequestMethods;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 
 
 namespace Api
@@ -82,14 +83,14 @@ namespace Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseAuthentication();
-            app.UseAuthorization();
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
