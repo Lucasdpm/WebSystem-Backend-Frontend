@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace  Api.Controllers
 {
     [ApiController]
-    [Authorize(Policy = "Mod")]
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
@@ -18,6 +17,8 @@ namespace  Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "Mod")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> GetAllUsers()
         {
             var result = await _userRepository.GetAllUsersAsync();
@@ -26,13 +27,15 @@ namespace  Api.Controllers
         }
 
         [HttpGet("{userId}")]
+        [Authorize(Policy = "Mod")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> GetByUserId(int userId)
         {
             var result = await _userRepository.GetUserAsyncById(userId);
             return Ok(result);
         }
 
-        [HttpPost("Register")]
+        [HttpPost("register")]
         public async Task<IActionResult> PostAccountAsync([FromBody] User data)
         {
             await _userRepository.CreateUserAsync(data.Name, data.Email, data.Password, data.Cpf);

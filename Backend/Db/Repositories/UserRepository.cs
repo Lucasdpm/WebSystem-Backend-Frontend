@@ -34,14 +34,19 @@ namespace Db.Repositories
             _context.SaveChangesAsync();
         }
         
-        public async Task<User> CreateNovoUsuarioAsync(string name, string email, string password, string cpf)
+        public async Task<User> CreateUserAsync(string name, string email, string password, string cpf)
         {
 
-            var existing = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            var existingEmail = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            var existingCpf = await _context.Users.FirstOrDefaultAsync(u => u.Cpf == cpf);
 
-            if (existing != null)
+            if (existingEmail != null)
             {
                 throw new DuplicateNameException("E-mail em uso.");
+            }
+            if (existingEmail != null)
+            {
+                throw new DuplicateNameException("Cpf em uso.");
             }
 
             var user = new User

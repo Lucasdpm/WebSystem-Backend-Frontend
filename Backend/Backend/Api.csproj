@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <Compile Remove="Authentication.cs" />
+    <Compile Remove="Authorization\BaseController.cs" />
+    <Compile Remove="Controllers\BaseController.cs" />
   </ItemGroup>
 
   <ItemGroup>

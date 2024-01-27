@@ -1,9 +1,5 @@
-﻿using Db.Models;
-using Db.Repositories;
+﻿using Db.Repositories;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Api.Authorization
 {
@@ -11,7 +7,7 @@ namespace Api.Authorization
     {
         private readonly UserRepository _usuariosRepository;
 
-        public AccessHandler(IHttpContextAccessor httpCA, UserRepository usuariosRepository)
+        public AccessHandler(UserRepository usuariosRepository)
         {
             _usuariosRepository = usuariosRepository;
         }

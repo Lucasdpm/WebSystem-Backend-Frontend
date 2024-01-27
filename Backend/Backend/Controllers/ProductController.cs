@@ -47,6 +47,7 @@ namespace Api.Controllers
 
         [HttpDelete("{productId}")]
         [Authorize(Policy = "Mod")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Delete(int productId)
         {
             var Product = await _productRepository.GetProductAsyncById(productId);

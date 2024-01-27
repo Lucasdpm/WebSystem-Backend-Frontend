@@ -7,7 +7,7 @@ namespace Api.Authorization
     {
         public Access userAccess { get; set; }
 
-        public AccessRequirement(Access accessLevel)
+        public AccessRequirement( Access accessLevel)
         {
             userAccess = accessLevel;
         }

@@ -87,7 +87,12 @@ export class RegisterComponent {
 			return
 		}
 
-		this.authService.register(this.formGroup.value).subscribe(() => {
+		this.authService.postRegister(
+				this.formGroup.value.name,
+				this.formGroup.value.email,
+				this.formGroup.value.cpf,
+				this.formGroup.value.password)
+			.subscribe(() => {
 			this.router.navigate(['/login'])
 		})
 	}

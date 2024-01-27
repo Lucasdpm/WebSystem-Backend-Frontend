@@ -9,6 +9,7 @@ using Db.Models;
 using Api.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using static System.Net.WebRequestMethods;
+using Microsoft.AspNetCore.HttpOverrides;
 
 
 namespace Api
@@ -64,6 +65,13 @@ namespace Api
                 options.AddPolicy("Admin", policy =>
                     policy.AddRequirements(new AccessRequirement(Access.ADMIN)));
             });
+
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders = ForwardedHeaders.All;
+                options.KnownNetworks.Clear();
+                options.KnownProxies.Clear();
+            });
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,14 +82,14 @@ namespace Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-
-            app.UseAuthentication();
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

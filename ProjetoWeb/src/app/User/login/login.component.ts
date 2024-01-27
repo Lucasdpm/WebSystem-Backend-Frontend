@@ -39,8 +39,8 @@ export class LoginComponent {
             return;
         }
 
-        this.authService.postLogin(this.formGroup.value.username, this.formGroup.value.password).subscribe(() => {
-            this.router.navigate(['/']);
+        this.authService.postLogin(this.formGroup.value.email, this.formGroup.value.password).subscribe(() => {
+            this.router.navigate(['/home']);
         });
     }
 }

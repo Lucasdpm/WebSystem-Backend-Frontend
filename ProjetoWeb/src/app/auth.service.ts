@@ -2,12 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { environment } from '../environments/environment';
-import { Login } from './models/login';
-import { Register } from './models/register';
-import { JwtAuth } from './models/jwtAuth';
-
-import { UserService } from './user.service';
-import { Access } from './access';
 import { JsonLocalStorage, JsonStorage } from './json-storage';
 
 interface UserInfo {
@@ -28,7 +22,7 @@ export class AuthService {
     private readonly userInfoStorage: JsonStorage<UserInfo>;
 
 	constructor(private http: HttpClient) {
-        this.userInfoStorage = new JsonLocalStorage('portal-diniz-user-info');
+        this.userInfoStorage = new JsonLocalStorage('user-info');
         this.userInfo = this.userInfoStorage.load();
 
         // Verifica e dispara requisição de refresh token
@@ -41,8 +35,6 @@ export class AuthService {
             }
         }, 10_000 /* 10 seg */);
     }
-	
-
 
 	isLoggedIn() {
         return !!this.userInfo;
@@ -58,11 +50,11 @@ export class AuthService {
     }
 
 	// Login com usuário / senha
-	postLogin(username: string, password: string) {
+	postLogin(email: string, password: string) {
 		const params = new HttpParams()
 			.append('grant_type', 'password')
 			.append('scope', 'openid offline_access')
-			.append('username', username)
+			.append('username', email)
 			.append('password', password);
 
 		return this.postConnectToken(params);
@@ -74,7 +66,7 @@ export class AuthService {
 			}
 		};
 		return this.http
-			.post<any>('api/connect/token', params.toString(), options)
+			.post<any>(`${this.mainUrl}/api/connect/token`, params.toString(), options)
 			.pipe(map(response => {
 				this.setToken(response);
 				return true;
@@ -89,7 +81,7 @@ export class AuthService {
         // Atualiza refresh token (se houver)
         let refreshToken = response.refresh_token;
         if (!refreshToken) {
-            refreshToken = this.userInfo.refreshToken;
+            refreshToken = this.userInfo?.refreshToken;
         }
 
         // Calcula próxima data de refresh (em milissegundos) - 1/4 da data de expiração
@@ -121,16 +113,17 @@ export class AuthService {
     }
 
     // Registrar novo usuário
-    postRegister(nome: string, email: string, cnpj: string, senha: string) {
+    postRegister(name: string, email: string, cpf: string, password: string) {
+        const url = `${this.mainUrl}/user/register`
         return this.http
-            .post('api/account', {
-                nome,
+            .post(url, {
+                name,
                 email,
-                cnpj,
-                senha
+                cpf,
+                password
             });
     }
-
+    
     // Esqueci a senha
     postForgotPassword(email: string) {
         return this.http.post('api/account/forgot-password', { email });
@@ -140,5 +133,4 @@ export class AuthService {
     postChangePassword(id: string, novaSenha: string) {
         return this.http.post('api/account/change-password', { id, novaSenha });
     }
-
 }
