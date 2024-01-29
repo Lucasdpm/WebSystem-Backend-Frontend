@@ -1,4 +1,5 @@
 ﻿using Db.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Db.Repositories
 {
@@ -11,5 +12,7 @@ namespace Db.Repositories
         public Task<User> CreateUserAsync(string name, string email, string password, string cpf);
         public Task<User[]> GetAllUsersAsync();
         public Task<User?> GetUserAsyncById(int id);
+        public Task<bool> UserEmailIsValidAsync(string email);
+        public Task<bool> UserCpfIsValidAsync(int id);
     }
 }

@@ -21,8 +21,8 @@
                 <label for="validationCustom02" class="form-label">E-mail</label>
                 <input type="text" class="form-control" id="validationCustom02" formControlName="email" placeholder="exemplo@xmpl.com" [readOnly]="userPermition"
                 [ngClass]="{
-                    'is-invalid': (submitted || formGroup.controls['email'].touched) && (formGroup.controls['email'].invalid || emailCheck()),
-                    'is-valid': formGroup.controls['email'].valid && !emailCheck()}">
+                    'is-invalid': (submitted || formGroup.controls['email'].touched) && (formGroup.controls['email'].invalid),
+                    'is-valid': formGroup.controls['email'].valid}">
                 <div class="invalid-feedback">
                     Email inválido ou já cadastrado
                 </div>
@@ -32,8 +32,8 @@
                 <label for="validationCustom03" class="form-label">CPF</label>
                 <input type="text" class="form-control" id="validationCustom03" placeholder="000.000.000-00" required formControlName="cpf" [mask]="'000.000.000-00'" [readOnly]="userPermition"
                 [ngClass]="{
-                    'is-invalid': (submitted || formGroup.controls['cpf'].touched) && (formGroup.controls['cpf'].invalid || cpfCheck()),
-                    'is-valid': formGroup.controls['cpf'].valid && !cpfCheck()}">
+                    'is-invalid': (submitted || formGroup.controls['cpf'].touched) && (formGroup.controls['cpf'].invalid),
+                    'is-valid': formGroup.controls['cpf'].valid}">
                 <div class="invalid-feedback">
                     Cpf inválido ou já cadastrado
                 </div>
@@ -41,7 +41,7 @@
 
             <div class="mb-3">
                 <label for="validationCustom04" class="form-label">Acesso</label>
-                <select class="form-select" id="validationCustom04" required formControlName="access" [disabled]="userPermition"
+                <select class="form-select" id="validationCustom04" required formControlName="access" [disabled]="!!userPermition"
                 [ngClass]="{
                     'is-invalid': (submitted || formGroup.controls['access'].touched) && (formGroup.controls['access'].invalid),
                     'is-valid': formGroup.controls['access'].valid }">

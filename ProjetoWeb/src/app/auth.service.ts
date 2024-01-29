@@ -8,6 +8,7 @@ interface UserInfo {
     accessToken: string;
     refreshToken: string;
     refreshAt: number;
+    name: string;
     id: string;
     email: string;
 }
@@ -45,8 +46,16 @@ export class AuthService {
         this.userInfoStorage.delete();
     }
 
-    get email() {
+    get getCurrentEmail() {
         return (this.userInfo && this.userInfo.email) || '';
+    }
+
+    get getCurrentId() {
+        return (this.userInfo && this.userInfo.id) || '';
+    }
+
+    get getCurrentName() {
+        return (this.userInfo && this.userInfo.name) || '';
     }
 
 	// Login com usuário / senha
@@ -93,6 +102,7 @@ export class AuthService {
             accessToken: response.access_token,
             refreshAt,
             refreshToken: response.refresh_token,
+            name: info.name,
             id: info.sub,
             email: info.email
         };

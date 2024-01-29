@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { UserService } from '../../user.service';
 import { User } from '../../user';
 import { Access } from '../../access';
+import { AuthService } from '../../auth.service';
+import { access } from 'fs';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
 	selector: 'app-user-form',
@@ -17,7 +20,7 @@ export class UserFormComponent {
 	submitted = false
 	error: any;
 
-	constructor(private userService: UserService, private formBuilder: FormBuilder, private router: Router) {
+	constructor(private userService: UserService, private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
 		this.initFormUser()
 	}
 
@@ -40,7 +43,10 @@ export class UserFormComponent {
 	}
 
 	get userPermition() {
-		return this.userService.checkAccess() === Access.mod
+		return this.userService.getUserAccessById(Number(this.authService.getCurrentId))
+			.subscribe(access => {
+				access === Access.mod
+			})
 	}
 
 	emailValidator(control: AbstractControl) {
@@ -51,18 +57,28 @@ export class UserFormComponent {
 		return valid ? null : { emailValidator: true }
 	}
 
-	emailCheck(): boolean { // matar
-		let alreadyRegistered: boolean = false
+	emailCheck(): Observable<boolean> { 
+		var subject = new Subject<boolean>();
 
-		
-
-		return alreadyRegistered
+		this.userService.UserEmailVerifeier(this.formGroup.value.email).subscribe(() => {
+			subject.next(true)
+		}, (err) => {
+			this.error = `Erro ao carregar usuario. StackTrace: ${err}`
+			subject.next(false)
+		})
+		return subject.asObservable()
 	}
 
-	cpfCheck(): boolean { // matar
-		var alreadyRegistered: boolean = false
+	cpfCheck(): Observable<boolean> { 
+		var subject = new Subject<boolean>();
 
-		return alreadyRegistered
+		this.userService.UserCpfVerifeier(this.formGroup.value.email).subscribe(() => {
+			subject.next(true)
+		}, (err) => {
+			this.error = `Erro ao carregar usuario. StackTrace: ${err}`
+			subject.next(false)
+		})
+		return subject.asObservable()
 	}
 
 	submit() {

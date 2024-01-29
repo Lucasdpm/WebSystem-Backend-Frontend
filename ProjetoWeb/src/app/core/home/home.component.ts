@@ -4,6 +4,8 @@ import { User } from '../../user';
 import { ProductService } from '../../product.service';
 import { Product } from '../../product';
 import { Access } from '../../access';
+import { AuthService } from '../../auth.service';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -14,20 +16,24 @@ export class HomeComponent {
   
   userList: User[] = []
   numUsers: number = 0
-  loggedUserName: string = ''
   
   productList: Product[] = []
   numProducts: number = 0
+  
+  loggedUserName: string = ''
+  error: any;
 
-  constructor(private userService: UserService, private productService: ProductService) {
-    if (!this.userService.checkLogIn()) {
-      return
-    }
+  constructor(private authService: AuthService, private userService: UserService, private productService: ProductService) {
+
+    this.loggedUserName = authService.getCurrentName
     
-    this.userService.getAllUsers().subscribe(data => {
-      this.userList = data
-      this.numUsers = this.userList.length
-      //this.userService.user.subscribe((value: User) => this.loggedUserName = value.name)
+    this.userHasPermition().subscribe(bool => {
+      if (bool) {
+        this.userService.getAllUsers().subscribe(data => {
+          this.userList = data
+          this.numUsers = this.userList.length
+        })
+      }
     })
 
     this.productService.getAllProducts().subscribe(data => {
@@ -36,10 +42,15 @@ export class HomeComponent {
     })
   }
 
-  userPermition(): boolean {
-    // if (this.userService.checkAccess() === Access.user) {
-    //   return false
-    // }
-    return true
+  userHasPermition(): Observable<boolean> {
+    var subject = new Subject<boolean>();
+    
+    var currentUserId = Number.parseInt(this.authService.getCurrentId)
+    this.userService.getUserById(currentUserId).subscribe(user => {
+      subject.next(user.access >= Access.mod)
+    }, (err) => {
+			this.error = `Erro ao carregar usuario. StackTrace: ${err}`
+    })
+    return subject.asObservable()
   }
 }

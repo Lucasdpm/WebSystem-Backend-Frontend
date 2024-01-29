@@ -60,7 +60,7 @@ export class ProductFormComponent {
     return valid ? null : {storageValidator: true}
   }
 
-  submit() {
+  submitChanges() {
     this.submitted = true
 
     if (this.formGroup.invalid) {
@@ -78,7 +78,7 @@ export class ProductFormComponent {
       return
     }
 
-    this.productService.addProduct(this.formGroup.value).subscribe(product => {
+    this.productService.addProduct(this.formGroup.value).subscribe(() => {
       this.router.navigate(['/productManagement'])
     })
   }

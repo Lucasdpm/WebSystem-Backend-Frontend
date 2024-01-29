@@ -2,6 +2,7 @@
 using Db.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace  Api.Controllers
 {
@@ -38,17 +39,25 @@ namespace  Api.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> PostAccountAsync([FromBody] User data)
         {
-            await _userRepository.CreateUserAsync(data.Name, data.Email, data.Password, data.Cpf);
+            try
+            {
+                await _userRepository.CreateUserAsync(data.Name, data.Email, data.Password, data.Cpf);
+            } 
+            catch (DuplicateNameException exception)
+            {
+                if(exception == new DuplicateNameException("E-mail em uso."))
+                {
+                    return Conflict("E-mail em uso.");
+                } 
+                else if (exception == new DuplicateNameException("Cpf em uso."))
+                {
+                    return Conflict("Cpf em uso.");
+                }
+            }
+            
             return Ok();
         }
 
-        [HttpPost]
-        [Authorize(Policy = "Admin")]
-        public async Task<IActionResult> Post(User model)
-        {
-            _userRepository.Add(model);
-            return Ok(model);
-        }
 
         [HttpPut("{userId}")]
         [Authorize(Policy = "Admin")]
@@ -70,6 +79,43 @@ namespace  Api.Controllers
             }
             _userRepository.Delete(User);
             return Ok("Deletado");
+        }
+
+        [HttpGet("userAccess/{userId}")]
+        public async Task<IActionResult> GetUserAccessAsyncById(int userId)
+        {
+            var result = await _userRepository.GetUserAsyncById(userId);
+            if (result == null)
+            {
+                return BadRequest();
+            }
+            return Ok(result.Access);
+        }
+
+        [HttpGet("userEmail/{userEmail}")]
+        public async Task<IActionResult> UserEmailAsyncVerifier(string userEmail)
+        {
+            var result = await _userRepository.UserEmailIsValidAsync(userEmail);
+            if (result.Equals(true))
+            {
+                return Ok();
+            }
+            return Conflict();
+            
+        }
+
+        [HttpGet("userCpf/{usercCpf}")]
+        public async Task<IActionResult> UserCpfIsValidAsync(string usercCpf)
+        {
+            var result = await _userRepository.GetAllUsersAsync();
+            for (int i = 0; i < result.Length; i++)
+            {
+                if (result[i].Cpf == usercCpf)
+                {
+                    return Conflict();
+                }
+            }
+            return Ok();
         }
     }
 }

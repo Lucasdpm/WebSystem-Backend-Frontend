@@ -24,22 +24,6 @@ export class UserService {
 
   constructor (private http: AuthHttpService, private localStorageService: LocalStorageService, private router: Router) { }
 
-  checkLogIn(): boolean {
-    return true
-  }
-
-  checkAccess(): Access {
-    return Access.admin
-  }
-
-  loggedUser() {
-    
-  }
-
-  signOut() {
-    this.localStorageService.clear()
-  }
-
   getAllUsers(): Observable<any> {
     return this.http.get(this.url)
   }
@@ -47,6 +31,11 @@ export class UserService {
   getUserById(id: number): Observable<User>{
     const url = `${this.url}/${id}`
     return this.http.get<User>(url)
+  }
+
+  getUserAccessById(id: number): Observable<Access> {
+    const url = `${this.url}/userAccess/${id}`
+    return this.http.get<Access>(url)
   }
 
   addUser(newUser: User): Observable<any>{
@@ -61,5 +50,15 @@ export class UserService {
   updateUser(id: number, updateUser: User): Observable<any> {
     const url = `${this.url}/${id}`
     return this.http.put(url, updateUser, this.httpOptions)
+  }
+
+  UserEmailVerifeier(email: string): Observable<Access> {
+    const url = `${this.url}/userEmail/${email}`
+    return this.http.get(url)
+  }
+
+  UserCpfVerifeier(cpf: string): Observable<Access> {
+    const url = `${this.url}/userCpf/${cpf}`
+    return this.http.get(url)
   }
 }

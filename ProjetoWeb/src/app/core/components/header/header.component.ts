@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { UserService } from '../../../user.service';
 import { User } from '../../../user';
 import { Router } from '@angular/router';
+import { AuthHttpService } from '../../../auth-http.service';
+import { AuthService } from '../../../auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,17 +11,18 @@ import { Router } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent{
-  logedUserName: string = ''
+  loggedUserName: string = ''
 
-  constructor(private userService: UserService, private router: Router) {
-    // this.userService.user.subscribe((value: User) => {
-    //   if (value === null) return
-    //   this.logedUserName = value.name
-    // })
+  constructor(private authService: AuthService, private userService: UserService, private router: Router) {
+    this.loggedUserName = this.authService.getCurrentName
+  }
+
+  get isLogedIn() {
+    return this.authService.isLoggedIn()
   }
 
   logOff() {
-    this.userService.signOut()
+    this.authService.logout()
     this.router.navigate(['/login'])
   }
 }

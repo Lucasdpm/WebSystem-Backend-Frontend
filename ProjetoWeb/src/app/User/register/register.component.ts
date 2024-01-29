@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../user.service';
-import { User } from '../../user';
 import { Access } from '../../access';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
@@ -13,7 +12,6 @@ import { AuthService } from '../../auth.service';
 })
 export class RegisterComponent {
 
-	//userList: User[] = []
 	formGroup: FormGroup
 	submitted = false
 
@@ -30,10 +28,6 @@ export class RegisterComponent {
 			cpf: [null, [Validators.required]],
 			access: <Access>Access.user
 		})
-
-		// this.userService.getAllUsers().subscribe(data => {
-		// 	this.userList = data
-		// })
 	}
 
 	emailValidator(control: AbstractControl) {
@@ -55,35 +49,10 @@ export class RegisterComponent {
 		return valid ? null : { passwordValidator: true }
 	}
 
-	cpfCheck(): boolean {
-		// var alreadyRegistered: boolean = false
-		// this.userList.forEach(user => {
-		// 	if (user.cpf === this.formGroup.value.cpf) {
-		// 		alreadyRegistered = true
-		// 	}
-		// })
-		// return alreadyRegistered
-		return false
-	}
-
-	emailCheck(): boolean {
-		// let alreadyRegistered: boolean = false
-		// this.userList.forEach(user => {
-		// 	if (user.email === this.formGroup.value.email) {
-		// 		alreadyRegistered = true
-		// 	}
-		// })
-		// return alreadyRegistered
-		return false
-	}
-
 	registerUser() {
 		this.submitted = true;
 
 		if (this.formGroup.invalid) {
-			return
-		}
-		if (this.cpfCheck() || this.emailCheck()) {
 			return
 		}
 

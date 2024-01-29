@@ -1,6 +1,7 @@
 ﻿using Db.Data;
 using Db.Models;
 using Db.Utils;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 
@@ -64,6 +65,36 @@ namespace Db.Repositories
             return user;
         }
 
+        public async Task<User> UpdateUserAsync(string name, string email, string password, string cpf)
+        {
+
+            var existingEmail = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            var existingCpf = await _context.Users.FirstOrDefaultAsync(u => u.Cpf == cpf);
+
+            if (existingEmail != null)
+            {
+                throw new DuplicateNameException("E-mail em uso.");
+            }
+            if (existingEmail != null)
+            {
+                throw new DuplicateNameException("Cpf em uso.");
+            }
+
+            var user = new User
+            {
+                Name = name.Trim(),
+                Email = email.Trim().ToLower(),
+                Password = PasswordHasher.Hash(password),
+                Cpf = new string(cpf.Where(c => char.IsDigit(c)).ToArray()),
+                Access = Access.USER
+            };
+
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
+
+            return user;
+        }
+
         public async Task<User[]> GetAllUsersAsync()
         {
             return await _context.Users.ToArrayAsync();
@@ -77,6 +108,34 @@ namespace Db.Repositories
         public async Task<User?> GetUserAsyncByEmail(string email)
         {
             return await _context.Users.SingleOrDefaultAsync(user => user.Email == email);
+        }
+
+        public async Task<bool> UserEmailIsValidAsync(string email)
+        {
+            var users = await this.GetAllUsersAsync();
+            foreach (var user in users)
+            {
+                if (user.Email == email)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public async Task<bool> UserCpfIsValidAsync(int id)
+        {
+            var users = await this.GetAllUsersAsync();
+            foreach (var user in users)
+            {
+                if (user.Id == id)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

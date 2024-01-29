@@ -1,6 +1,6 @@
 <div class="registerProductBody vh-100">
     <button class="back btn btn-primary mt-4 ms-4" style="transform: translateY(79px);" routerLink="/productManagement">Voltar</button>
-    <form [formGroup]="formGroup" (ngSubmit)="submit()">
+    <form [formGroup]="formGroup">
         <div class="container bg-body-tertiary align-midle rounded position-absolute top-50 start-50 translate-middle w-50">
             @if (productId) {
                 <legend class="mt-3 mb-3">Informações do produto</legend>
@@ -52,13 +52,13 @@
             <div class="container text-center mt-4 mb-3">
                 @if (productId) {
                     <div class="row gap-3">
-                        <button type="submit" class="btn btn-primary col">Salvar</button>
+                        <button type="submit" class="btn btn-primary col" (click)="submitChanges()">Salvar</button>
                         <button type="button" class="delete" class="btn btn-primary col" [disabled]="userPermition()" (click)="delete()">Deletar</button>
                     </div>
                 }
                 @else {
                     <div class="row">
-                        <button type="submit" class="btn btn-primary col mb-3">Registrar</button>
+                        <button type="submit" class="btn btn-primary col mb-3" (click)="registerProduct()">Registrar</button>
                     </div>
                 }
                 
