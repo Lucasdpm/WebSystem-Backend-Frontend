@@ -3,12 +3,13 @@ using Db.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace  Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class UserController : ControllerBase
+    public class UserController : UserBaseController
     {
         private readonly IUserRepository _userRepository;
 
@@ -45,17 +46,17 @@ namespace  Api.Controllers
             } 
             catch (DuplicateNameException exception)
             {
-                if(exception == new DuplicateNameException("E-mail em uso."))
+                if(exception.Message == "E-mail em uso.")
                 {
-                    return Conflict("E-mail em uso.");
+                    return Conflict(exception.Message);
                 } 
-                else if (exception == new DuplicateNameException("Cpf em uso."))
+                else if (exception.Message == "Cpf em uso.")
                 {
-                    return Conflict("Cpf em uso.");
+                    return Conflict(exception.Message);
                 }
             }
             
-            return Ok();
+            return Ok(data);
         }
 
 
@@ -63,9 +64,23 @@ namespace  Api.Controllers
         [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Put(int userId, User model)
         {
-            var User = await _userRepository.GetUserAsyncById(userId);
-            _userRepository.Update(model);
-            return Ok(model);
+            try
+            {
+                await _userRepository.UpdateUserAsync(model.Id, model.Name, model.Email, model.Password, model.Cpf, model.Access);
+            }
+            catch (DuplicateNameException exception)
+            {
+                if (exception == new DuplicateNameException("E-mail em uso."))
+                {
+                    return Conflict("E-mail em uso.");
+                }
+                else if (exception == new DuplicateNameException("Cpf em uso."))
+                {
+                    return Conflict("Cpf em uso.");
+                }
+            }
+
+            return Ok();
         }
 
         [HttpDelete("{userId}")]
@@ -116,6 +131,13 @@ namespace  Api.Controllers
                 }
             }
             return Ok();
+        }
+
+        [HttpGet("current")]
+        public async Task<IActionResult> GetCurrentAsync()
+        {
+            var result = await _userRepository.GetUserAsyncById(CurrentId);
+            return Ok(result);
         }
     }
 }

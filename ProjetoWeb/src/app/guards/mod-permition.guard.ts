@@ -5,12 +5,14 @@ import { Access } from '../access';
 import { AuthHttpService } from '../auth-http.service';
 
 export const modPermitionGuard = () => {
-  const authService = inject(AuthHttpService)
-  const router = inject(Router)
+	const userService = inject(UserService)
+	const router = inject(Router)
 
-  // const userAccess = userService.user.value.access
-  // if(userAccess === Access.mod || userAccess === Access.admin) return true
-
-  // router.navigateByUrl('/home')
-  // return false
+	userService.getCurrentUser().subscribe(user => {
+		if (user.access === Access.mod || user.access === Access.admin) {
+			router.navigate(['/login']);
+			return true
+		}
+		return false
+	})
 };

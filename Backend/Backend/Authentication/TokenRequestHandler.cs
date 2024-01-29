@@ -64,12 +64,6 @@ namespace Api.Authentication
                 context.Reject(Errors.InvalidGrant, "O usuário ou a senha estão incorretos.");
                 return null;
             }
-            //var passwordHash = PasswordHasher.Hash(context.Request.Password);
-            //if (user.Password != passwordHash)
-            //{
-            //    context.Reject(Errors.InvalidGrant, "O usuário ou a senha estão incorretos.");
-            //    return null;
-            //}
 
             identity.AddClaim(new Claim(Claims.Subject, user.Id.ToString()).SetDestinations(Destinations.AccessToken, Destinations.IdentityToken));
             identity.AddClaim(new Claim(Claims.Name, user.Name).SetDestinations(Destinations.AccessToken, Destinations.IdentityToken));

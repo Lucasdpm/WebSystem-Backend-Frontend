@@ -4,6 +4,7 @@ import { UserService } from '../../user.service';
 import { Access } from '../../access';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
+import { error } from 'console';
 
 @Component({
 	selector: 'app-register',
@@ -14,13 +15,14 @@ export class RegisterComponent {
 
 	formGroup: FormGroup
 	submitted = false
+	emailIsInvalid = false
+	cpfIsInvalid = false
 
 	constructor(
 		private userService: UserService,
 		private authService: AuthService,
 		private formBuilder: FormBuilder,
-		private router: Router) 
-	{
+		private router: Router) {
 		this.formGroup = formBuilder.group({
 			name: [null, [Validators.required]],
 			email: [null, [Validators.required, this.emailValidator]],
@@ -57,13 +59,20 @@ export class RegisterComponent {
 		}
 
 		this.authService.postRegister(
-				this.formGroup.value.name,
-				this.formGroup.value.email,
-				this.formGroup.value.cpf,
-				this.formGroup.value.password)
+			this.formGroup.value.name,
+			this.formGroup.value.email,
+			this.formGroup.value.cpf,
+			this.formGroup.value.password)
 			.subscribe(() => {
-			this.router.navigate(['/login'])
-		})
+				this.router.navigate(['/login'])
+			}, (err) => {
+				if (err.error == "E-mail em uso.") {
+					this.emailIsInvalid = true
+				}
+				if (err.error == "Cpf em uso.") {
+					this.cpfIsInvalid = true
+				}
+		}	)
 	}
 
 }

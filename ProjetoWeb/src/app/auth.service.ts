@@ -58,7 +58,7 @@ export class AuthService {
         return (this.userInfo && this.userInfo.name) || '';
     }
 
-	// Login com usuário / senha
+	// Login com email / senha
 	postLogin(email: string, password: string) {
 		const params = new HttpParams()
 			.append('grant_type', 'password')

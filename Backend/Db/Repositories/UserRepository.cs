@@ -37,7 +37,6 @@ namespace Db.Repositories
         
         public async Task<User> CreateUserAsync(string name, string email, string password, string cpf)
         {
-
             var existingEmail = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             var existingCpf = await _context.Users.FirstOrDefaultAsync(u => u.Cpf == cpf);
 
@@ -65,11 +64,11 @@ namespace Db.Repositories
             return user;
         }
 
-        public async Task<User> UpdateUserAsync(string name, string email, string password, string cpf)
+        public async Task<User> UpdateUserAsync(int id, string name, string email, string password, string cpf, Access access)
         {
 
-            var existingEmail = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
-            var existingCpf = await _context.Users.FirstOrDefaultAsync(u => u.Cpf == cpf);
+            var existingEmail = await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.Id != id);
+            var existingCpf = await _context.Users.FirstOrDefaultAsync(u => u.Cpf == cpf && u.Id != id);
 
             if (existingEmail != null)
             {
@@ -82,14 +81,16 @@ namespace Db.Repositories
 
             var user = new User
             {
+                Id = id,
                 Name = name.Trim(),
                 Email = email.Trim().ToLower(),
                 Password = PasswordHasher.Hash(password),
                 Cpf = new string(cpf.Where(c => char.IsDigit(c)).ToArray()),
-                Access = Access.USER
+                Access = access
             };
 
-            await _context.Users.AddAsync(user);
+            _context.ChangeTracker.Clear();
+            _context.Update(user);
             await _context.SaveChangesAsync();
 
             return user;

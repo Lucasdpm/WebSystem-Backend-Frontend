@@ -9,9 +9,11 @@ namespace Api.Controllers
 
         protected string CurrentEmail => User.Claims.Single(c => c.Type == "email").Value;
 
-        protected string CurrentCnpj => User.Claims.Single(c => c.Type == "cnpj").Value;
+        protected string CurrentCnpj => User.Claims.Single(c => c.Type == "cpf").Value;
 
-        protected int CurrentFornecedorId
+        protected string CurrentAccess => User.Claims.Single(c => c.Type == "access").Value;
+
+        protected int CurrentUserId
         {
             get
             {

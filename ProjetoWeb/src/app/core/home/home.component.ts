@@ -8,49 +8,53 @@ import { AuthService } from '../../auth.service';
 import { Observable, Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+	selector: 'app-home',
+	templateUrl: './home.component.html',
+	styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  
-  userList: User[] = []
-  numUsers: number = 0
-  
-  productList: Product[] = []
-  numProducts: number = 0
-  
-  loggedUserName: string = ''
-  error: any;
 
-  constructor(private authService: AuthService, private userService: UserService, private productService: ProductService) {
+	userList: User[] = []
+	numUsers: number = 0
 
-    this.loggedUserName = authService.getCurrentName
-    
-    this.userHasPermition().subscribe(bool => {
-      if (bool) {
-        this.userService.getAllUsers().subscribe(data => {
-          this.userList = data
-          this.numUsers = this.userList.length
-        })
-      }
-    })
+	productList: Product[] = []
+	numProducts: number = 0
 
-    this.productService.getAllProducts().subscribe(data => {
-      this.productList = data
-      this.numProducts = this.productList.length
-    })
-  }
+	loggedUserName: string = ''
+	userHasPermitionResult = false
+	error: any;
 
-  userHasPermition(): Observable<boolean> {
-    var subject = new Subject<boolean>();
-    
-    var currentUserId = Number.parseInt(this.authService.getCurrentId)
-    this.userService.getUserById(currentUserId).subscribe(user => {
-      subject.next(user.access >= Access.mod)
-    }, (err) => {
+	constructor(private authService: AuthService, private userService: UserService, private productService: ProductService) {
+		this.userHasPermitionResult = Boolean(this.userHasPermition())
+		this.loggedUserName = authService.getCurrentName
+
+		if (this.userHasPermitionResult) {
+			this.userService.getAllUsers().subscribe(data => {
+				this.userList = data
+				this.numUsers = this.userList.length
+			})
+		}
+
+		this.productService.getAllProducts().subscribe(data => {
+			this.productList = data
+			this.numProducts = this.productList.length
+		})
+	}
+
+	userHasPermition() {
+		this.userService.getCurrentUser().subscribe(user => {
+
+			console.log(`Teste 1 :   ${user.id}`)
+			console.log(`Teste 2 :   ${user.name}`)
+			console.log(`Teste 3 :   ${user.email}`)
+			console.log(`Teste 2 :   ${user.password}`)
+
+
+			this.userHasPermitionResult = user.access === Access.mod || user.access === Access.admin
+			return this.userHasPermitionResult
+		}, (err) => {
 			this.error = `Erro ao carregar usuario. StackTrace: ${err}`
-    })
-    return subject.asObservable()
-  }
+			return this.userHasPermitionResult
+		})
+	}
 }

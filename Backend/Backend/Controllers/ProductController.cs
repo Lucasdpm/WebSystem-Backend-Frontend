@@ -7,7 +7,7 @@ namespace Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ProductController : UserBaseController
+    public class ProductController : ControllerBase
     {
         private readonly IProductRepository _productRepository;
 

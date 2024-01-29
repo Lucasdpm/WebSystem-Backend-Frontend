@@ -19,7 +19,7 @@
                 <label for="validationCustom02" class="form-label">E-mail</label>
                 <input type="text" class="form-control" id="validationCustom01" formControlName="email" placeholder="exemplo@xmpl.com"
                 [ngClass]="{
-                    'is-invalid': (submitted || formGroup.controls['email'].touched) && (formGroup.controls['email'].invalid),
+                    'is-invalid': (submitted || formGroup.controls['email'].touched) && (formGroup.controls['email'].invalid || emailIsInvalid),
                     'is-valid': formGroup.controls['email'].valid}">
                 <div class="invalid-feedback">
                     Email inválido ou já cadastrado
@@ -41,7 +41,7 @@
                 <label for="validationCustom04" class="form-label">CPF</label>
                 <input type="text" class="form-control" id="validationCustom01" placeholder="000.000.000-00" required formControlName="cpf" [mask]="'000.000.000-00'"
                 [ngClass]="{
-                    'is-invalid': (submitted || formGroup.controls['cpf'].touched) && (formGroup.controls['cpf'].invalid),
+                    'is-invalid': (submitted || formGroup.controls['cpf'].touched) && (formGroup.controls['cpf'].invalid || cpfIsInvalid),
                     'is-valid': formGroup.controls['cpf'].valid}">
                 <div class="invalid-feedback">
                     Cpf inválido ou já cadastrado

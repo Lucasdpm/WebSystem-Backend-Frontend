@@ -10,6 +10,7 @@ namespace Db.Repositories
         public void Delete<T>(T entity) where T : class;
 
         public Task<User> CreateUserAsync(string name, string email, string password, string cpf);
+        public Task<User> UpdateUserAsync(int id, string name, string email, string password, string cpf, Access access);
         public Task<User[]> GetAllUsersAsync();
         public Task<User?> GetUserAsyncById(int id);
         public Task<bool> UserEmailIsValidAsync(string email);

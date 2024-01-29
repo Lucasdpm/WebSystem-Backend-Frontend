@@ -42,10 +42,10 @@ export class UserFormComponent {
 		}
 	}
 
-	get userPermition() {
+	get userHasPermition() {
 		return this.userService.getUserAccessById(Number(this.authService.getCurrentId))
 			.subscribe(access => {
-				access === Access.mod
+				access === Access.admin
 			})
 	}
 

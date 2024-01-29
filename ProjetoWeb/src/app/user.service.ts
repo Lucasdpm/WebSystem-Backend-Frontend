@@ -13,8 +13,6 @@ import { AuthHttpService } from './auth-http.service';
 })
 export class UserService {
 
-  
-
   url = `${environment.MainUrl}/user`
   httpOptions = {
     headers: new HttpHeaders({
@@ -23,6 +21,11 @@ export class UserService {
   }
 
   constructor (private http: AuthHttpService, private localStorageService: LocalStorageService, private router: Router) { }
+
+  getCurrentUser(): Observable<User> {
+    const url = `${this.url}/current`
+    return this.http.get(url, this.httpOptions)
+  }
 
   getAllUsers(): Observable<any> {
     return this.http.get(this.url)
