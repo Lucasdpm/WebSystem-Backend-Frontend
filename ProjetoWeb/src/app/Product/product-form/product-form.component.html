@@ -52,13 +52,13 @@
             <div class="container text-center mt-4 mb-3">
                 @if (productId) {
                     <div class="row gap-3">
-                        <button type="submit" class="btn btn-primary col" (click)="submitChanges()">Salvar</button>
-                        <button type="button" class="delete" class="btn btn-primary col" [disabled]="userPermition()" (click)="delete()">Deletar</button>
+                        <button type="button" class="btn btn-primary col" (click)="submitChanges()">Salvar</button>
+                        <button type="button" class="delete" class="btn btn-primary col" [disabled]="!userHasPermitionResult" (click)="delete()">Deletar</button>
                     </div>
                 }
                 @else {
                     <div class="row">
-                        <button type="submit" class="btn btn-primary col mb-3" (click)="registerProduct()">Registrar</button>
+                        <button type="button" class="btn btn-primary col mb-3" (click)="registerProduct()">Registrar</button>
                     </div>
                 }
                 

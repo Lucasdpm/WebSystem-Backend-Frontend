@@ -25,15 +25,17 @@ export class HomeComponent {
 	error: any;
 
 	constructor(private authService: AuthService, private userService: UserService, private productService: ProductService) {
-		this.userHasPermitionResult = Boolean(this.userHasPermition())
 		this.loggedUserName = authService.getCurrentName
-
-		if (this.userHasPermitionResult) {
-			this.userService.getAllUsers().subscribe(data => {
-				this.userList = data
-				this.numUsers = this.userList.length
-			})
-		}
+		
+		this.userHasPermition().subscribe(result => {
+			this.userHasPermitionResult = result
+			if (result) {
+				this.userService.getAllUsers().subscribe(data => {
+					this.userList = data
+					this.numUsers = this.userList.length
+				})
+			}
+		})
 
 		this.productService.getAllProducts().subscribe(data => {
 			this.productList = data
@@ -41,20 +43,15 @@ export class HomeComponent {
 		})
 	}
 
-	userHasPermition() {
+	userHasPermition(): Observable<boolean> {
+		let result = new Subject<boolean>()
+
 		this.userService.getCurrentUser().subscribe(user => {
-
-			console.log(`Teste 1 :   ${user.id}`)
-			console.log(`Teste 2 :   ${user.name}`)
-			console.log(`Teste 3 :   ${user.email}`)
-			console.log(`Teste 2 :   ${user.password}`)
-
-
-			this.userHasPermitionResult = user.access === Access.mod || user.access === Access.admin
-			return this.userHasPermitionResult
+			result.next(user.access === Access.mod || user.access === Access.admin)
 		}, (err) => {
 			this.error = `Erro ao carregar usuario. StackTrace: ${err}`
-			return this.userHasPermitionResult
+			result.next(false)
 		})
+		return result.asObservable()
 	}
 }

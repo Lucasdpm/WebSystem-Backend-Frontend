@@ -3,7 +3,6 @@ using Db.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace  Api.Controllers
 {

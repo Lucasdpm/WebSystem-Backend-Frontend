@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ProductService } from '../../product.service';
 import { UserService } from '../../user.service';
 import { Access } from '../../access';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-product-form',
@@ -14,9 +15,14 @@ export class ProductFormComponent {
 
   productId: number = Number.parseInt(this.router.url.slice(9))
   formGroup: FormGroup = <FormGroup>{}
+  userHasPermitionResult = false
   submitted = false
+  error: any;
 
   constructor(private productService: ProductService, private formBuilder:FormBuilder, private router: Router, private userService: UserService) {
+    this.userHasPermition().subscribe(result => {
+			this.userHasPermitionResult = result
+		})
     this.initFormProduct()
   }
   
@@ -83,12 +89,17 @@ export class ProductFormComponent {
     })
   }
 
-  userPermition(): boolean {
-    // if (this.userService.checkAccess() === Access.user) {
-    //   return true
-    // }
-    return false
-  }
+  userHasPermition(): Observable<boolean> {
+		let result = new Subject<boolean>()
+
+		this.userService.getCurrentUser().subscribe(user => {
+			result.next(user.access === Access.admin)
+		}, (err) => {
+			this.error = `Erro ao carregar usuario. StackTrace: ${err}`
+			result.next(false)
+		})
+		return result.asObservable()
+	}
 
   delete() {
     this.productService.deleteProduct(this.productId).subscribe(() => {
