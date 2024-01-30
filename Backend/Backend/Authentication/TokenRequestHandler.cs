@@ -68,6 +68,7 @@ namespace Api.Authentication
             identity.AddClaim(new Claim(Claims.Subject, user.Id.ToString()).SetDestinations(Destinations.AccessToken, Destinations.IdentityToken));
             identity.AddClaim(new Claim(Claims.Name, user.Name).SetDestinations(Destinations.AccessToken, Destinations.IdentityToken));
             identity.AddClaim(new Claim(Claims.Email, user.Email).SetDestinations(Destinations.AccessToken, Destinations.IdentityToken));
+            identity.AddClaim(new Claim(Claims.Role, user.Access.ToString()).SetDestinations(Destinations.AccessToken, Destinations.IdentityToken));
 
             return identity;
         }

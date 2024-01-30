@@ -4,7 +4,7 @@
       <img src="..\..\..\assets\logo.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top ms-1" >
       <a class="navbar-brand d-inline-block align-text-top mt-2 ms-2" href="/home">Web Project</a>
     </a>
-    <span class="navbar-text h6 align-text-top mt-2">{{ loggedUserName }}</span>
+    <span class="navbar-text h6 align-text-top mt-2">{{ authService.getCurrentName }}</span>
     <button class="btn btn-primary" (click)="logOff()" [hidden]="!isLogedIn">Deslogar</button>
   </div>
 </nav>

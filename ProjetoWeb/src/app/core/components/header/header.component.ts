@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../../user.service';
-import { User } from '../../../user';
 import { Router } from '@angular/router';
-import { AuthHttpService } from '../../../auth-http.service';
 import { AuthService } from '../../../auth.service';
 
 @Component({
@@ -11,16 +9,11 @@ import { AuthService } from '../../../auth.service';
 	styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-	loggedUserName: string = ''
+
 	error: any;
 
-	constructor(private authService: AuthService, private userService: UserService, private router: Router) {
-		this.userService.getCurrentUser().subscribe(user => {
-			this.loggedUserName = user.name
-		}, (err) => {
-			this.error = `Erro ao carregar usuario. StackTrace: ${err}`
-		})
-	}
+	constructor(public authService: AuthService, private userService: UserService, private router: Router) { }
+
 
 	get isLogedIn() {
 		return this.authService.isLoggedIn()

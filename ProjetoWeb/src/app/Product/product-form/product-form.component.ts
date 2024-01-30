@@ -3,8 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { ProductService } from '../../product.service';
 import { UserService } from '../../user.service';
-import { Access } from '../../access';
-import { Observable, Subject } from 'rxjs';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-product-form',
@@ -19,10 +18,10 @@ export class ProductFormComponent {
   submitted = false
   error: any;
 
-  constructor(private productService: ProductService, private formBuilder:FormBuilder, private router: Router, private userService: UserService) {
-    this.userHasPermition().subscribe(result => {
-			this.userHasPermitionResult = result
-		})
+  constructor(private productService: ProductService, private formBuilder:FormBuilder, private router: Router, private userService: UserService, private authService: AuthService) {
+    if (authService.getCurrentAccess === 'ADMIN') {
+			this.userHasPermitionResult = true
+		}
     this.initFormProduct()
   }
   
@@ -74,7 +73,9 @@ export class ProductFormComponent {
     }
     this.productService.updateProduct(this.productId, this.formGroup.value).subscribe(() => {
       this.router.navigate(['/productManagement'])
-    })
+    }, (err) => {
+      console.log(err)
+		})
   }
 
   registerProduct() {
@@ -88,18 +89,6 @@ export class ProductFormComponent {
       this.router.navigate(['/productManagement'])
     })
   }
-
-  userHasPermition(): Observable<boolean> {
-		let result = new Subject<boolean>()
-
-		this.userService.getCurrentUser().subscribe(user => {
-			result.next(user.access === Access.admin)
-		}, (err) => {
-			this.error = `Erro ao carregar usuario. StackTrace: ${err}`
-			result.next(false)
-		})
-		return result.asObservable()
-	}
 
   delete() {
     this.productService.deleteProduct(this.productId).subscribe(() => {

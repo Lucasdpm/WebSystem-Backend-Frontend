@@ -1,5 +1,4 @@
 ﻿using Api.Authentication;
-using Microsoft.Extensions.DependencyInjection;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 using static OpenIddict.Server.OpenIddictServerEvents;
 

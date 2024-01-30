@@ -7,12 +7,17 @@ import { Product } from '../../product';
   templateUrl: './product-management.component.html',
   styleUrl: './product-management.component.css'
 })
-export class ProductManagementComponent {
+export class ProductManagementComponent{
 
   productList: Product[] = []
   displayedColumns: string[] = ['name', 'price', 'weight', 'description', 'storage'];
+  error: any;
 
-  constructor(private productService: ProductService) {
-    this.productService.getAllProducts().subscribe(data => this.productList = data)
+  constructor(private productService: ProductService) { 
+    this.productService.getAllProducts().subscribe((data) => {
+      this.productList = data
+    }, (err) => {
+      this.error = `Erro ao deletar usuario. StackTrace: ${err}`
+    })
   }
 }

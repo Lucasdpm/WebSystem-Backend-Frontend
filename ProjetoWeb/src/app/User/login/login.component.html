@@ -6,11 +6,13 @@
             
             <div class="mb-3">
                 <label for="validationCustom01" class="form-label">E-mail</label>
-                <input type="text" class="form-control" id="validationCustom01" required formControlName="email">
+                <input type="text" class="form-control" id="validationCustom01" required formControlName="email"
+                [ngClass]="{'is-invalid': submitted || formGroup.controls['password'].touched && formGroup.controls['password'].invalid}">
             </div>
             <div class="mb-3">
                 <label for="validationCustom02" class="form-label">Senha</label>
-                <input #x type="password" class="form-control" id="validationCustom02" required formControlName="password">
+                <input #x type="password" class="form-control" id="validationCustom02" required formControlName="password"
+                [ngClass]="{'is-invalid': submitted || formGroup.controls['password'].touched && formGroup.controls['password'].invalid}">
                 <div class="invalid-feedback">
                     E-mail ou Senha incorretos
                 </div>

@@ -4,7 +4,6 @@ import { UserService } from '../../user.service';
 import { Access } from '../../access';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
-import { error } from 'console';
 
 @Component({
 	selector: 'app-register',
@@ -72,7 +71,7 @@ export class RegisterComponent {
 				if (err.error == "Cpf em uso.") {
 					this.cpfIsInvalid = true
 				}
-		}	)
+		})
 	}
 
 }

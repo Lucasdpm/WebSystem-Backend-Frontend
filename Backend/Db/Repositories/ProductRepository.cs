@@ -19,11 +19,11 @@ namespace Db.Repositories
             _context.SaveChangesAsync();
         }
 
-        public void Update<T>(T entity) where T : class
+        public async Task Update<T>(T entity)
         {
             _context.ChangeTracker.Clear();
             _context.Update(entity);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public void Delete<T>(T entity) where T : class

@@ -106,32 +106,6 @@ namespace  Api.Controllers
             return Ok(result.Access);
         }
 
-        [HttpGet("userEmail/{userEmail}")]
-        public async Task<IActionResult> UserEmailAsyncVerifier(string userEmail)
-        {
-            var result = await _userRepository.UserEmailIsValidAsync(userEmail);
-            if (result.Equals(true))
-            {
-                return Ok();
-            }
-            return Conflict();
-            
-        }
-
-        [HttpGet("userCpf/{usercCpf}")]
-        public async Task<IActionResult> UserCpfIsValidAsync(string usercCpf)
-        {
-            var result = await _userRepository.GetAllUsersAsync();
-            for (int i = 0; i < result.Length; i++)
-            {
-                if (result[i].Cpf == usercCpf)
-                {
-                    return Conflict();
-                }
-            }
-            return Ok();
-        }
-
         [HttpGet("current")]
         public async Task<IActionResult> GetCurrentAsync()
         {

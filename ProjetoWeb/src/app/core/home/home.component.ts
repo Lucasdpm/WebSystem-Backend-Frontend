@@ -21,37 +21,23 @@ export class HomeComponent {
 	numProducts: number = 0
 
 	loggedUserName: string = ''
-	userHasPermitionResult = false
+	userHasPermition = false
 	error: any;
 
 	constructor(private authService: AuthService, private userService: UserService, private productService: ProductService) {
 		this.loggedUserName = authService.getCurrentName
-		
-		this.userHasPermition().subscribe(result => {
-			this.userHasPermitionResult = result
-			if (result) {
-				this.userService.getAllUsers().subscribe(data => {
-					this.userList = data
-					this.numUsers = this.userList.length
-				})
-			}
-		})
+
+		if (authService.getCurrentAccess === 'MOD' || authService.getCurrentAccess === 'ADMIN') {
+			this.userHasPermition = true
+			this.userService.getAllUsers().subscribe(data => {
+				this.userList = data
+				this.numUsers = this.userList.length
+			})
+		}
 
 		this.productService.getAllProducts().subscribe(data => {
 			this.productList = data
 			this.numProducts = this.productList.length
 		})
-	}
-
-	userHasPermition(): Observable<boolean> {
-		let result = new Subject<boolean>()
-
-		this.userService.getCurrentUser().subscribe(user => {
-			result.next(user.access === Access.mod || user.access === Access.admin)
-		}, (err) => {
-			this.error = `Erro ao carregar usuario. StackTrace: ${err}`
-			result.next(false)
-		})
-		return result.asObservable()
 	}
 }

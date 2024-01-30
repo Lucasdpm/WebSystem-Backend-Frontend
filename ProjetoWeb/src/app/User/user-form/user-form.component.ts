@@ -2,11 +2,8 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../user.service';
-import { User } from '../../user';
 import { Access } from '../../access';
 import { AuthService } from '../../auth.service';
-import { access } from 'fs';
-import { Observable, Subject } from 'rxjs';
 
 @Component({
 	selector: 'app-user-form',
@@ -18,9 +15,13 @@ export class UserFormComponent {
 	userId: number = Number.parseInt(this.router.url.slice(6))
 	formGroup: FormGroup = <FormGroup>{}
 	submitted = false
+	userHasPermition = false
 	error: any;
 
 	constructor(private userService: UserService, private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
+		if (authService.getCurrentAccess === "ADMIN") {
+			this.userHasPermition = true
+		}
 		this.initFormUser()
 	}
 
@@ -32,7 +33,7 @@ export class UserFormComponent {
 					id: [user.id],
 					name: [user.name, [Validators.required]],
 					email: [user.email, [Validators.required, this.emailValidator]],
-					password: [user.password],
+					password: [user.password, [Validators.required, Validators.minLength(8), this.passwordValidator]],
 					cpf: [user.cpf, [Validators.required]],
 					access: [user.access]
 				})
@@ -40,13 +41,6 @@ export class UserFormComponent {
 				this.error = `Erro ao mostrar usuario. StackTrace: ${err}`
 			})
 		}
-	}
-
-	get userHasPermition() {
-		return this.userService.getUserAccessById(Number(this.authService.getCurrentId))
-			.subscribe(access => {
-				access === Access.admin
-			})
 	}
 
 	emailValidator(control: AbstractControl) {
@@ -57,28 +51,15 @@ export class UserFormComponent {
 		return valid ? null : { emailValidator: true }
 	}
 
-	emailCheck(): Observable<boolean> { 
-		var subject = new Subject<boolean>();
+	passwordValidator(control: AbstractControl) {
+		const password = control.value
 
-		this.userService.UserEmailVerifeier(this.formGroup.value.email).subscribe(() => {
-			subject.next(true)
-		}, (err) => {
-			this.error = `Erro ao carregar usuario. StackTrace: ${err}`
-			subject.next(false)
-		})
-		return subject.asObservable()
-	}
+		let hasLetter = /[a-zA-Z]/.test(password)
+		let hasNumber = /\d/.test(password)
+		let hasNonalphas = /[!@#$%*,.;:/?-_]/.test(password)
 
-	cpfCheck(): Observable<boolean> { 
-		var subject = new Subject<boolean>();
-
-		this.userService.UserCpfVerifeier(this.formGroup.value.email).subscribe(() => {
-			subject.next(true)
-		}, (err) => {
-			this.error = `Erro ao carregar usuario. StackTrace: ${err}`
-			subject.next(false)
-		})
-		return subject.asObservable()
+		const valid = hasLetter && hasNumber && hasNonalphas && password.length || !password.length
+		return valid ? null : { passwordValidator: true }
 	}
 
 	submit() {

@@ -41,7 +41,7 @@ namespace Api.Controllers
         public async Task<IActionResult> Put(int productId, Product model)
         {
             var Product = await _productRepository.GetProductAsyncById(productId);
-            _productRepository.Update(model);
+            await _productRepository.Update(model);
             return Ok(model);
         }
 

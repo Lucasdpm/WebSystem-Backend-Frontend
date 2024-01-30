@@ -1,17 +1,15 @@
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../user.service';
-import { Access } from '../access';
+import { AuthService } from '../auth.service';
 
 export const modPermitionGuard = () => {
-	const userService = inject(UserService)
+	const authService = inject(AuthService)
 	const router = inject(Router)
+	let error: any
 
-	userService.getCurrentUser().subscribe(user => {
-		if (user.access === Access.mod || user.access === Access.admin) {
-			return true
-		}
-		router.navigate(['/home']);
-		return false
-	})
+	if (authService.getCurrentAccess === 'MOD' || authService.getCurrentAccess === 'ADMIN') {
+		return true
+	}
+	router.navigate(['/home'])
+	return false
 };

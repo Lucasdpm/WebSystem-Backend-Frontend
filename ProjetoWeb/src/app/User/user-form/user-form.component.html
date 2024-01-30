@@ -1,6 +1,6 @@
 <div class="registerBody vh-100">
     <button class="back btn btn-primary mt-4 ms-4" style="transform: translateY(79px);" routerLink="/userManagement">Voltar</button>
-    <form [formGroup]="formGroup" (ngSubmit)="submit()">
+    <form *ngIf="formGroup.value" [formGroup]="formGroup" (ngSubmit)="submit()">
         <div class="container bg-body-tertiary align-midle rounded position-absolute top-50 start-50 translate-middle w-50">
 
             <legend class="mt-3 mb-3">Informações do Usuário</legend>

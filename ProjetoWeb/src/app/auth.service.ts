@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { map } from 'rxjs';
 import { environment } from '../environments/environment';
 import { JsonLocalStorage, JsonStorage } from './json-storage';
 
@@ -8,9 +8,10 @@ interface UserInfo {
     accessToken: string;
     refreshToken: string;
     refreshAt: number;
-    name: string;
     id: string;
+    name: string;
     email: string;
+    access: string;
 }
 
 @Injectable({
@@ -25,16 +26,6 @@ export class AuthService {
 	constructor(private http: HttpClient) {
         this.userInfoStorage = new JsonLocalStorage('user-info');
         this.userInfo = this.userInfoStorage.load();
-
-        // Verifica e dispara requisição de refresh token
-        setInterval(() => {
-            if (this.userInfo && this.userInfo.refreshToken) {
-                const now = new Date();
-                if (now.getTime() > this.userInfo.refreshAt) {
-                    this.postRefreshToken(this.userInfo.refreshToken).subscribe();
-                }
-            }
-        }, 10_000 /* 10 seg */);
     }
 
 	isLoggedIn() {
@@ -46,16 +37,30 @@ export class AuthService {
         this.userInfoStorage.delete();
     }
 
-    get getCurrentEmail() {
-        return (this.userInfo && this.userInfo.email) || '';
-    }
-
     get getCurrentId() {
         return (this.userInfo && this.userInfo.id) || '';
     }
 
     get getCurrentName() {
         return (this.userInfo && this.userInfo.name) || '';
+    }
+
+    get getCurrentEmail() {
+        return (this.userInfo && this.userInfo.email) || '';
+    }
+
+    get getCurrentAccess() {
+        return (this.userInfo && this.userInfo.access) || '';
+    }
+    
+	getAccessToken() {
+        return (this.userInfo && this.userInfo.accessToken) || '';
+    }
+
+    // Registrar novo usuário
+    postRegister(name: string, email: string, cpf: string, password: string) {
+        const url = `${this.mainUrl}/user/register`
+        return this.http.post(url, {name, email, cpf, password})
     }
 
 	// Login com email / senha
@@ -102,9 +107,10 @@ export class AuthService {
             accessToken: response.access_token,
             refreshAt,
             refreshToken: response.refresh_token,
-            name: info.name,
             id: info.sub,
-            email: info.email
+            name: info.name,
+            email: info.email,
+            access: info.role
         };
         this.userInfoStorage.save(this.userInfo);
     }
@@ -116,21 +122,5 @@ export class AuthService {
             .append('refresh_token', refreshToken);
 
         return this.postConnectToken(params);
-    }
-
-	getAccessToken() {
-        return (this.userInfo && this.userInfo.accessToken) || '';
-    }
-
-    // Registrar novo usuário
-    postRegister(name: string, email: string, cpf: string, password: string) {
-        const url = `${this.mainUrl}/user/register`
-        return this.http
-            .post(url, {
-                name,
-                email,
-                cpf,
-                password
-            });
     }
 }
